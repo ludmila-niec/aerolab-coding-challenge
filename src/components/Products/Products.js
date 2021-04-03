@@ -1,6 +1,6 @@
 import React from "react";
-import Filter from "./Filter/Filter";
-import Pagination from "./Pagination/Pagination";
+import Filter from "./Filter";
+import Pagination from "./Pagination";
 import { Navigation } from "./styled";
 
 const FILTERS = {
@@ -11,13 +11,13 @@ const FILTERS = {
 
 const Products = () => {
   return (
-    <div>
+    <section>
       <Navigation>
         <Filter />
         <Pagination />
       </Navigation>
       {/* product list */}
-    </div>
+    </section>
   );
 };
 

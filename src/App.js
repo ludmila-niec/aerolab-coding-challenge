@@ -1,18 +1,16 @@
-import Header from "./components/Header/Header";
-import Hero from "./components/Hero/Hero";
-import Layout from './components/Layout/Layout'
-import Products from './components/Products/Products'
+import Header from "./components/Header";
+import Home from './screens/Home'
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Header />
-      <main>
-        <Hero />
-        <Layout>
-         <Products />
-        </Layout>
-      </main>
+        <Header />
+        <main>
+          <Switch>
+            <Route path='/home' component={Home} />
+          </Switch>
+        </main>
     </>
   );
 }
