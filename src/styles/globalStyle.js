@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
 html, body{
 width: 100%;
-  min-height: 85vh;
+  min-height: 100vh;
   scroll-behavior:smooth;
 }
 
