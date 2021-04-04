@@ -1,15 +1,29 @@
 import React from "react";
 import { Container, WrapperFlex, Button } from "./styled";
-const FILTERS = ["Most recent", "Lowest Price", "Highest Price"];
+import { TYPES } from "../Products";
 
-const Filter = () => {
+const Filter = ({ filterApplyed, actions }) => {
+  const { showMostRecent, showLowestPrice, showHighestPrice } = actions;
+  const filterBtns = [
+    { name: "Most Recent", type: TYPES.MOST_RECENT, action: showMostRecent },
+    { name: "Lowest Price", type: TYPES.LOWEST_PRICE, action: showLowestPrice },
+    {
+      name: "Highest Price",
+      type: TYPES.HIGHEST_PRICE,
+      action: showHighestPrice,
+    },
+  ];
   return (
     <Container>
       <label htmlFor="filter">Sort By:</label>
       <WrapperFlex>
-        {FILTERS.map((filter) => (
-          <Button key={filter} active={filter === FILTERS[0]}>
-            {filter}
+        {filterBtns.map((filter) => (
+          <Button
+            key={filter.type}
+            active={filter.type === filterApplyed}
+            onClick={() => filter.action(filter.type)}
+          >
+            {filter.name}
           </Button>
         ))}
       </WrapperFlex>

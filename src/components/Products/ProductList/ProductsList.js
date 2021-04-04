@@ -1,14 +1,12 @@
 import React from 'react'
-import ProductCard from '../ProductCard/ProductCard'
+import ProductCard from '../ProductCard'
 import {Container} from './styled'
 
-const ProductsList = () => {
+const ProductsList = ({products}) => {
     return (
         <Container>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+          {products.map((product) => 
+          <ProductCard key={product._id} data={product} />)}
         </Container>
     )
 }

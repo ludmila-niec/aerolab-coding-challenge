@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BuyWhite from "../../icons/BuyWhite";
 import BuyBlue from "../../icons/BuyBlue";
 import Coin from "../../icons/Coin";
+import { useUser } from "../../../context/user/UserContext";
 import {
   Container,
   WrapperImg,
@@ -12,19 +13,22 @@ import {
   Button,
   Divider,
 } from "./styled";
-import AmazonIng from "../../../assets/AmazonEcho-x1.png";
 
-const ProductCard = () => {
+const ProductCard = ({ data }) => {
   const [display, setDisplay] = useState(false);
+  const { _id, name, category, cost, img } = data;
+  const {
+    state: { user },
+  } = useUser();
 
   const showOverlay = (
     <Overlay display={display.toString()}>
       <BuyWhite />
       <WrapperValue>
-        <p>12.000</p>
+        <p>{cost}</p>
         <Coin width="40px" height="45px" />
       </WrapperValue>
-      <Button>Redeem Now</Button>
+      <Button onClick={() => console.log("redeem", _id)}>Redeem Now</Button>
     </Overlay>
   );
   return (
@@ -33,26 +37,29 @@ const ProductCard = () => {
         onMouseEnter={() => setDisplay(true)}
         onMouseLeave={() => setDisplay(false)}
       >
-        <BuyBlue />
-        {/* <Badge>You need 1000 <Coin width='25px' height='23px' /></Badge> */}
+        {cost <= user.points ? (
+          <BuyBlue />
+        ) : (
+          <Badge>
+            You need {Math.abs(user.points - cost)} points
+            <Coin width="25px" height="23px" />
+          </Badge>
+        )}
+
         <WrapperImg>
-          <img src={AmazonIng} alt="product img" />
+          <img
+            src={img.url}
+            srcSet={`${img.hdUrl} 2x, ${img.url} 1x`}
+            alt={name}
+          />
         </WrapperImg>
         <Divider />
         <WrapperInfo>
-          <p>Smart home</p>
-          <p>Amazon echo</p>
+          <p>{category}</p>
+          <p>{name}</p>
         </WrapperInfo>
-        {display && showOverlay}
+        {display && cost <= user.points && showOverlay}
       </Container>
-      {/* <Overlay display={display}>
-        <BuyWhite />
-        <WrapperValue>
-          <p>12.000</p>
-          <Coin />
-        </WrapperValue>
-        <Button>Redeem</Button>
-      </Overlay> */}
     </>
   );
 };
