@@ -1,6 +1,7 @@
 import React from "react";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
+import ProductList from './ProductList/ProductsList'
 import { Navigation } from "./styled";
 
 const FILTERS = {
@@ -16,7 +17,7 @@ const Products = () => {
         <Filter />
         <Pagination />
       </Navigation>
-      {/* product list */}
+      <ProductList />
     </section>
   );
 };
