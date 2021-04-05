@@ -16,13 +16,13 @@ export const Backdrop = styled.div`
   -webkit-backdrop-filter: blur(12px);
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items:flex-start;
 `;
 
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.colorBg};
   border-radius: 5px;
-  margin-top: 3rem;
+  margin-top: 6rem;
   width: 80%;
   display: flex;
   flex-direction: column;

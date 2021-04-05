@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   align-items: center;
   overflow-y: auto;
   padding: 2rem 0;
+  max-height:75vh;
 `;
 
 export const CardStyled = styled.div`
@@ -29,7 +30,7 @@ export const CardStyled = styled.div`
     margin-bottom: 0.5rem;
   }
   & > svg {
-    margin: 2rem;
+    min-height:100px;
   }
 `;
 
