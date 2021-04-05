@@ -4,6 +4,9 @@ export const HeaderStyled = styled.header`
   height: 8vh;
   width: 100%;
   background-color: #ffffff;
+  position: fixed;
+  top:0;
+  z-index:20;
 `;
 
 export const Navbar = styled.nav`
