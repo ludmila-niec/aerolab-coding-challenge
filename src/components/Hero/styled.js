@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: relative;
+  margin-top:3rem;
 `;
 
 export const Image = styled.img`

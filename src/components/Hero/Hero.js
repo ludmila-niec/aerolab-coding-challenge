@@ -8,10 +8,10 @@ const Hero = () => {
     <section>
       <Container>
         <Image
-          src={imgSm}
           srcSet={`${imgSm} 900w, ${imgMd} 1950w`}
           sizes="
           (max-width: 899px) 900w, 1950w"
+          src={imgSm}
           alt="Electronics Banner"
         />
         <Title>Electronics</Title>
