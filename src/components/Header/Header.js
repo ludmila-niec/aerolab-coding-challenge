@@ -10,14 +10,39 @@ import {
 import Logo from "../icons/Logo";
 import Coin from "../icons/Coin";
 import { useUser } from "../../context/user/UserContext";
-import Modal from "../Modal/Modal";
+import Modal from "../Modal";
 import AddPoints from "./AddPoints/Addpoints";
+import Toast from "../Toast";
+
+export const STATUS = {
+  IDLE: "IDLE",
+  PENDING: "PENDING",
+  RESOLVED: "RESOLVED",
+  REJECTED: "REJECTED",
+};
 
 const Header = () => {
+  // track status of 'addPoints' action
+  const [status, setStatus] = useState(STATUS.IDLE);
+  // Modal state
   const [isOpen, setIsOpen] = useState(false);
   const { state, actions } = useUser();
   const { user } = state;
   const { addPoints } = actions;
+
+  const handleAddPoints = async (amount) => {
+    try{
+      setStatus(STATUS.PENDING);
+      await addPoints(amount)
+      setStatus(STATUS.RESOLVED)
+    }catch(error){
+      setStatus(STATUS.REJECTED)
+    }
+  };
+
+  const resetStatus = () => {
+    setStatus(STATUS.IDLE);
+  };
   return (
     <>
       <HeaderStyled>
@@ -32,13 +57,20 @@ const Header = () => {
             </Button>
           </WrapperFlex>
         </Navbar>
+        {status === STATUS.RESOLVED && (
+          <Toast color="success">Points successfully updated!</Toast>
+        )}
       </HeaderStyled>
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         title="Get More Points!"
       >
-        <AddPoints addPoints={addPoints} />
+        <AddPoints
+          status={status}
+          addPoints={handleAddPoints}
+          resetStatus={resetStatus}
+        />
       </Modal>
     </>
   );
