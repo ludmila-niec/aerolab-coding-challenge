@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import RedeemProduct from "../RedeemProduct";
+import Modal from "../../Modal";
 import BuyWhite from "../../icons/BuyWhite";
 import BuyBlue from "../../icons/BuyBlue";
 import Coin from "../../icons/Coin";
@@ -16,10 +18,11 @@ import {
 
 const ProductCard = ({ data }) => {
   const [display, setDisplay] = useState(false);
-  const { _id, name, category, cost, img } = data;
-  const {
-    state: { user },
-  } = useUser();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const { name, category, cost, img } = data;
+  const { state, actions } = useUser();
+  const { user } = state;
+  const { redeemProduct } = actions;
 
   const showOverlay = (
     <Overlay display={display.toString()}>
@@ -28,7 +31,7 @@ const ProductCard = ({ data }) => {
         <p>{cost}</p>
         <Coin width="40px" height="45px" />
       </WrapperValue>
-      <Button onClick={() => console.log("redeem", _id)}>Redeem Now</Button>
+      <Button onClick={() => setIsOpenModal(true)}>Redeem Now</Button>
     </Overlay>
   );
   return (
@@ -60,6 +63,13 @@ const ProductCard = ({ data }) => {
         </WrapperInfo>
         {display && cost <= user.points && showOverlay}
       </Container>
+      <Modal
+        isOpen={isOpenModal}
+        onClose={() => setIsOpenModal(false)}
+        title="Almost yours!"
+      >
+        <RedeemProduct data={data} redeemProduct={redeemProduct} onClose={() => setIsOpenModal(false)} />
+      </Modal>
     </>
   );
 };

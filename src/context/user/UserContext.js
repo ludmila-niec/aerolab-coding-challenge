@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import * as api from '../../service/userApi'
+import * as api from "../../service/userApi";
+import { redeemProduct } from "../../service/redeemApi";
 
 const initialState = {
   _id: "",
@@ -19,7 +20,8 @@ function UserProvider({ children }) {
   //   get user data
   useEffect(() => {
     setErrors({});
-    api.getUserData()
+    api
+      .getUserData()
       .then((data) => {
         setUser(data);
         setLoading(false);
@@ -45,8 +47,21 @@ function UserProvider({ children }) {
     }
   }
 
+  // redeem product and update user points
+  async function handleRedeemProduct(productId, cost) {
+    try {
+      await redeemProduct(productId);
+      setUser({ ...user, points: user.points - cost });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const state = { user, loading, errors };
-  const actions = { addPoints: handleAddpoints };
+  const actions = {
+    addPoints: handleAddpoints,
+    redeemProduct: handleRedeemProduct,
+  };
   const contextValue = { state, actions };
 
   return (
