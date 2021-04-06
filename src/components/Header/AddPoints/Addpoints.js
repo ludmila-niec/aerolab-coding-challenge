@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Card from "./Card";
-import { Wrapper } from "./styled";
+import Spinner from "../../Spinner";
+import { Wrapper, WrapperLoading } from "./styled";
 import { STATUS } from "../Header";
 
 const validPoints = [{ value: 1000 }, { value: 5000 }, { value: 7500 }];
@@ -13,13 +14,21 @@ const Addpoints = ({ status, addPoints, resetStatus }) => {
       }, 5000);
     }
   }, [status]);
+
+  if (status === STATUS.PENDING) {
+    return (
+      <WrapperLoading>
+        <Spinner />
+        <p>Please wait...</p>
+      </WrapperLoading>
+    );
+  }
   return (
     <Wrapper>
       {validPoints.map((points, index) => (
         <Card
           key={index}
           amount={points.value}
-          status={status}
           addPoints={addPoints}
         />
       ))}

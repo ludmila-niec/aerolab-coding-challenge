@@ -7,7 +7,12 @@ export const Wrapper = styled.div`
   align-items: center;
   overflow-y: auto;
   padding: 2rem 0;
-  max-height:75vh;
+  max-height: 75vh;
+
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    flex-direction: row;
+    padding: 1rem 0;
+  }
 `;
 
 export const CardStyled = styled.div`
@@ -22,6 +27,7 @@ export const CardStyled = styled.div`
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
 
   p:first-of-type {
+    color: ${({ theme }) => theme.gray300};
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
   }
@@ -30,7 +36,11 @@ export const CardStyled = styled.div`
     margin-bottom: 0.5rem;
   }
   & > svg {
-    min-height:100px;
+    min-height: 100px;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    width: 40%;
   }
 `;
 
@@ -51,5 +61,25 @@ export const Button = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.colorSecondary};
+  }
+`;
+
+export const WrapperLoading = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+
+  & > p {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  @media ${({theme}) => theme.mediaQuery.mediaSm}{
+    & > p{
+      font-size:2.5rem;
+    }
   }
 `;

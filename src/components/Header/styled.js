@@ -27,11 +27,14 @@ export const Username = styled.p`
   font-size: 1rem;
   color: ${({ theme }) => theme.gray300};
   margin-right:1rem;
+
+  @media ${({theme}) => theme.mediaQuery.mediaSm}{
+    font-size:1.2rem;
+  }
 `;
 
 export const Button = styled.button`
   font-family: "Source Sans Pro", sans-serif;
-  font-size: 0.8rem;
   color: ${({ theme }) => theme.gray300};
   background-color: ${({ theme }) => theme.gray100};
   box-shadow: none;
@@ -46,6 +49,15 @@ export const Button = styled.button`
   }
   p:last-of-type{
     font-size: 1.4rem;
+  }
+
+  @media ${({theme}) => theme.mediaQuery.mediaSm}{
+    & > p{
+      font-size:1.2rem;
+    }
+    p:last-of-type{
+    font-size: 1.6rem;
+  }
   }
 `;
 
