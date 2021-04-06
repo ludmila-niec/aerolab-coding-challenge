@@ -27,6 +27,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+
+  @media ${({theme}) => theme.mediaQuery.mediaSm}{
+    margin-top:10rem;
+    width:95%;
+  }
 `;
 
 export const Header = styled.div`
@@ -54,5 +59,11 @@ export const Header = styled.div`
     border: none;
     background: none;
     cursor: pointer;
+  }
+
+  @media ${({theme}) => theme.mediaQuery.mediaSm}{
+    & > h3{
+      font-size:2rem;
+    }
   }
 `;

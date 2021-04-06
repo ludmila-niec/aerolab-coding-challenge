@@ -3,6 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: relative;
   margin-top:3rem;
+  @media ${({theme}) => theme.mediaQuery.mediaSm}{
+    margin-top:5rem;
+  }
+  @media ${({theme}) => theme.mediaQuery.mediaMd}{
+    margin-top: 4rem;
+  }
 `;
 
 export const Image = styled.img`
@@ -12,9 +18,15 @@ export const Image = styled.img`
 
 export const Title = styled.h1`
   position: absolute;
-  bottom:20px;
-  left:20px;
+  bottom:10%;
+  left:8%;
   font-size: 1.5rem;
   font-weight:600;
   color: #FFFFFF;
+
+ @media ${({theme}) => theme.mediaQuery.mediaSm}{
+   font-size:2.5rem;
+   left:8%;
+ }
+ 
 `;

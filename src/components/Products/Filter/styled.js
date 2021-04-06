@@ -2,14 +2,28 @@ import styled from "styled-components";
 export const Container = styled.div`
   padding-bottom: 0.8rem;
   border-bottom: 1px solid ${({ theme }) => theme.gray100};
+
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    border-bottom:none;
+    padding-bottom: 0;
+    display: flex;
+    flex:1;
+    align-items: center;
+    margin: 0 1rem;
+  }
 `;
 
 export const WrapperFlex = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 1rem 0;
+
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    flex:1;
+    margin: 0 1rem;
+    justify-content:flex-start;
+  }
 `;
 
 export const Button = styled.button`
@@ -22,10 +36,16 @@ export const Button = styled.button`
   border: none;
   border-radius: 50px;
   padding: 0.4rem 1rem;
+  /* margin-right:0.8rem; */
   transition: 0.4s;
   cursor: pointer;
 
   &:hover {
     background-color: ${({ active, theme }) => !active && theme.colorSecondary};
+  }
+
+  @media ${({theme}) => theme.mediaQuery.mediaSm}{
+    margin-right:0.8rem;
+    font-size:1rem;
   }
 `;

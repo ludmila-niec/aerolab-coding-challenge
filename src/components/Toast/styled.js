@@ -24,4 +24,8 @@ export const Container = styled.div`
   animation: ${showAlert} 5s cubic-bezier(0, 1.15, 0.62, 0.91);
   animation-direction: alternate;
   animation-fill-mode: forwards;
+
+  @media ${({theme}) => theme.mediaQuery.mediaSm}{
+    font-size: 1.5rem;
+  }
 `;
