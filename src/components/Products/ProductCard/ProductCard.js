@@ -27,18 +27,23 @@ const ProductCard = ({ data }) => {
 
   useEffect(() => {
     const container = containerRef.current;
-    container.addEventListener("mouseenter", () => {
+    
+    function showOverlay(){
       setDisplay(true);
       container.style.transform = "translateY(-5%)";
-    });
-    container.addEventListener("mouseleave", () => {
+    }
+
+    function hideOverlay(){
       setDisplay(false);
       container.style.transform = "translateY(0)";
-    });
+    }
+
+    container.addEventListener("mouseenter", showOverlay)
+    container.addEventListener("mouseleave", hideOverlay)
 
     return () => {
-      container.removeListener("mouseenter");
-      container.removeListener("mouseleave");
+      container.removeEventListener("mouseenter", showOverlay);
+      container.removeEventListener("mouseleave", hideOverlay);
     };
   }, []);
 
