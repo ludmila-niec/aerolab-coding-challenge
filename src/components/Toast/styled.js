@@ -26,6 +26,9 @@ export const Container = styled.div`
   animation-fill-mode: forwards;
 
   @media ${({theme}) => theme.mediaQuery.mediaSm}{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+  }
+  @media ${({theme}) => theme.mediaQuery.mediaMd}{
+    width:50%;
   }
 `;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, WrapperFlex, Button } from "./styled";
+import { Container, WrapperFlex, Label, Button } from "./styled";
 import { TYPES } from "../Products";
 
 const Filter = ({ filterApplyed, actions }) => {
@@ -15,7 +15,7 @@ const Filter = ({ filterApplyed, actions }) => {
   ];
   return (
     <Container>
-      <label htmlFor="filter">Sort By:</label>
+      <Label htmlFor="filter">Sort By:</Label>
       <WrapperFlex>
         {filterBtns.map((filter) => (
           <Button

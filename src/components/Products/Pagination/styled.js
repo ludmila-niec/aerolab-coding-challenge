@@ -25,4 +25,7 @@ export const Text = styled.p`
     padding-right: 1rem;
     border-right: 1px solid ${({ theme }) => theme.gray100};
   }
+  @media ${({theme}) => theme.mediaQuery.mediaMd}{
+    font-size:1.2rem;
+  }
 `;

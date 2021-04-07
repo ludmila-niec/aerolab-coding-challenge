@@ -10,7 +10,8 @@ export const Container = styled.div`
   overflow-y: auto;
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    padding: 3rem 2rem;
+    margin: 2rem;
+    padding: 2rem;
   }
 `;
 
@@ -40,7 +41,7 @@ export const ImageWrapper = styled.div`
   }
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    padding: 2rem;
+    margin-bottom: 1rem;
     & > img {
       height: 100%;
       width: 100%;
@@ -56,6 +57,7 @@ const ImageZoom = keyframes`
 
 export const Image = styled.img`
   animation: ${ImageZoom} 2.5s ease-in-out infinite;
+  margin: 2rem auto;
 `;
 export const CostWrapper = styled.div`
   display: flex;
@@ -84,7 +86,15 @@ export const ButtonGroup = styled.div`
   margin-top: 2rem;
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    width: 60%;
+    width: 50%;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.mediaMd} {
+    flex-direction: row-reverse;
+    min-height: 50px;
+    button:last-of-type {
+      margin-right: 2rem;
+    }
   }
 `;
 
@@ -105,5 +115,10 @@ export const Button = styled.button`
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     font-size: 1.5rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.mediaMd} {
+    width: 40%;
+    margin-bottom: 0;
   }
 `;

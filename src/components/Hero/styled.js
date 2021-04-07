@@ -28,5 +28,7 @@ export const Title = styled.h1`
    font-size:2.5rem;
    left:8%;
  }
- 
+ @media ${({theme}) => theme.mediaQuery.mediaMd}{
+   font-size:3.5rem;
+ }
 `;

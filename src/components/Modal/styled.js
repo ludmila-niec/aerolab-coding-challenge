@@ -16,7 +16,7 @@ export const Backdrop = styled.div`
   -webkit-backdrop-filter: blur(12px);
   display: flex;
   justify-content: center;
-  align-items:flex-start;
+  align-items: flex-start;
 `;
 
 export const Container = styled.div`
@@ -28,9 +28,13 @@ export const Container = styled.div`
   flex-direction: column;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
 
-  @media ${({theme}) => theme.mediaQuery.mediaSm}{
-    margin-top:10rem;
-    width:95%;
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    margin-top: 10rem;
+    width: 95%;
+  }
+  @media ${({ theme }) => theme.mediaQuery.mediaMd} {
+    width: 70%;
+    margin-top: 7rem;
   }
 `;
 
@@ -41,7 +45,7 @@ export const Header = styled.div`
     #25bbf1 109.68%
   );
   position: relative;
-  border-radius:5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
   & > h3 {
     font-size: 1.5rem;
     color: #ffffff;
@@ -53,7 +57,7 @@ export const Header = styled.div`
     position: absolute;
     right: 0;
     top: 0;
-    bottom:0;
+    bottom: 0;
     padding: 1rem;
     box-shadow: none;
     border: none;
@@ -61,9 +65,9 @@ export const Header = styled.div`
     cursor: pointer;
   }
 
-  @media ${({theme}) => theme.mediaQuery.mediaSm}{
-    & > h3{
-      font-size:2rem;
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    & > h3 {
+      font-size: 2rem;
     }
   }
 `;

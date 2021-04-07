@@ -9,6 +9,7 @@ export const Container = styled.div`
   border-radius: 5px;
   padding: 1rem;
   position: relative;
+  transition:all .4s;
 
   & > svg {
     position: absolute;
@@ -16,6 +17,7 @@ export const Container = styled.div`
     right: 0;
     margin: 1rem;
   }
+
 `;
 
 export const WrapperImg = styled.div`

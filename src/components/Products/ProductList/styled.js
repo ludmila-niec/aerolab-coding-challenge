@@ -10,4 +10,8 @@ export const Container = styled.div`
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  @media ${({theme}) => theme.mediaQuery.mediaMd}{
+    grid-template-columns: repeat(4, 1fr)
+  }
 `;

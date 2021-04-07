@@ -4,10 +4,10 @@ export const Container = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.gray100};
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    border-bottom:none;
+    border-bottom: none;
     padding-bottom: 0;
     display: flex;
-    flex:1;
+    flex: 1;
     align-items: center;
     margin: 0 1rem;
   }
@@ -20,9 +20,16 @@ export const WrapperFlex = styled.div`
   margin: 1rem 0;
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    flex:1;
+    flex: 1;
     margin: 0 1rem;
-    justify-content:flex-start;
+    justify-content: flex-start;
+  }
+`;
+
+export const Label = styled.label`
+  font-size: 1rem;
+  @media ${({ theme }) => theme.mediaQuery.mediaMd} {
+    font-size: 1.2rem;
   }
 `;
 
@@ -42,10 +49,16 @@ export const Button = styled.button`
 
   &:hover {
     background-color: ${({ active, theme }) => !active && theme.colorSecondary};
+    color: #FFFFFF;
   }
 
-  @media ${({theme}) => theme.mediaQuery.mediaSm}{
-    margin-right:0.8rem;
-    font-size:1rem;
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    margin-right: 0.8rem;
+    font-size: 1rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.mediaMd} {
+    font-size: 1.2rem;
+    margin-right: 1.5rem;
   }
 `;

@@ -13,6 +13,11 @@ export const Wrapper = styled.div`
     flex-direction: row;
     padding: 1rem 0;
   }
+
+  @media ${({theme}) => theme.mediaQuery.mediaMd}{
+    justify-content: space-evenly;
+    padding:2rem;
+  }
 `;
 
 export const CardStyled = styled.div`
@@ -41,6 +46,9 @@ export const CardStyled = styled.div`
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     width: 40%;
+  }
+  @media ${({theme}) => theme.mediaQuery.mediaMd}{
+    width:30%
   }
 `;
 

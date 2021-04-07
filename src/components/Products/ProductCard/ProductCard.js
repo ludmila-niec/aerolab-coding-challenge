@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import RedeemProduct from "../RedeemProduct";
 import Modal from "../../Modal";
 import BuyWhite from "../../icons/BuyWhite";
@@ -23,6 +23,24 @@ const ProductCard = ({ data }) => {
   const { state, actions } = useUser();
   const { user } = state;
   const { redeemProduct } = actions;
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    container.addEventListener("mouseenter", () => {
+      setDisplay(true);
+      container.style.transform = "translateY(-5%)";
+    });
+    container.addEventListener("mouseleave", () => {
+      setDisplay(false);
+      container.style.transform = "translateY(0)";
+    });
+
+    return () => {
+      container.removeListener("mouseenter");
+      container.removeListener("mouseleave");
+    };
+  }, []);
 
   const showOverlay = (
     <Overlay display={display.toString()}>
@@ -34,11 +52,11 @@ const ProductCard = ({ data }) => {
       <Button onClick={() => setIsOpenModal(true)}>Redeem Now</Button>
     </Overlay>
   );
+
   return (
     <>
       <Container
-        onMouseEnter={() => setDisplay(true)}
-        onMouseLeave={() => setDisplay(false)}
+        ref={containerRef}
       >
         {cost <= user.points ? (
           <BuyBlue />
@@ -68,7 +86,11 @@ const ProductCard = ({ data }) => {
         onClose={() => setIsOpenModal(false)}
         title="Great choice!"
       >
-        <RedeemProduct data={data} redeemProduct={redeemProduct} onClose={() => setIsOpenModal(false)} />
+        <RedeemProduct
+          data={data}
+          redeemProduct={redeemProduct}
+          onClose={() => setIsOpenModal(false)}
+        />
       </Modal>
     </>
   );
