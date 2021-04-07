@@ -4,6 +4,8 @@ import Pagination from "./Pagination";
 import ProductList from "./ProductList";
 import * as api from "../../service/productApi";
 import { Navigation } from "./styled";
+import useFilter from "../../hooks/useFilter";
+import usePagination from "../../hooks/usePagination";
 
 export const TYPES = {
   MOST_RECENT: "MOST_RECENT",
@@ -14,8 +16,25 @@ export const TYPES = {
 const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [productList, setProductList] = useState([]);
-  const [filteredList, setFilteredList] = useState([]);
-  const [filterApplyed, setFilterApplyed] = useState(TYPES.MOST_RECENT);
+  const {
+    filteredList,
+    setFilteredList,
+    filterApplyed,
+    showMostRecent,
+    showLowestPrice,
+    showHighestPrice,
+  } = useFilter(TYPES.MOST_RECENT, productList);
+  const {
+    currentPage,
+    setCurrentPage,
+    currentProducts, 
+    numberOfPages,
+    numberOfProductsShowing,
+    setNumberOfProductsShowing,
+    handleNextPage,
+    handlePrevPage,
+  } = usePagination(filteredList);
+
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -32,23 +51,11 @@ const Products = () => {
       });
   }, []);
 
-  const showMostRecent = (selected) => {
-    setFilterApplyed(selected);
-    setFilteredList(productList);
-  };
+  useEffect(() => {
+    setCurrentPage(1);
+    setNumberOfProductsShowing(16);
+  }, [filterApplyed]);
 
-  const showLowestPrice = (selected) => {
-    setFilterApplyed(selected);
-    const products = [...productList];
-    const lowestPriceList = products.sort((a, b) => a.cost - b.cost);
-    setFilteredList(lowestPriceList);
-  };
-  const showHighestPrice = (selected) => {
-    setFilterApplyed(selected);
-    const products = [...productList];
-    const highestPriceList = products.sort((a, b) => b.cost - a.cost);
-    setFilteredList(highestPriceList);
-  };
 
   return (
     <section>
@@ -57,9 +64,19 @@ const Products = () => {
           filterApplyed={filterApplyed}
           actions={{ showMostRecent, showLowestPrice, showHighestPrice }}
         />
-        <Pagination />
+        <Pagination
+          handleNextPage={handleNextPage}
+          handlePrevPage={handlePrevPage}
+          numberOfPages={numberOfPages}
+          currentPage={currentPage}
+          numberOfProductsShowing={numberOfProductsShowing}
+        />
       </Navigation>
-      {filteredList.length > 0 && <ProductList products={filteredList} />}
+      {currentProducts.length > 0 && (
+        <ProductList
+          products={currentProducts}
+        />
+      )}
     </section>
   );
 };

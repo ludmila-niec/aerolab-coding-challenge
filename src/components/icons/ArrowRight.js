@@ -9,7 +9,7 @@ const ArrowRight = ({width, height}) => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title>arrow-up</title>
+      <title>arrow-next</title>
       <desc>Created with Sketch.</desc>
       <defs></defs>
       <g
