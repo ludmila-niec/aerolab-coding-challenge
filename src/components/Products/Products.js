@@ -3,7 +3,7 @@ import Filter from "./Filter";
 import Pagination from "./Pagination";
 import ProductList from "./ProductList";
 import * as api from "../../service/productApi";
-import { Navigation } from "./styled";
+import { Navigation, WrapperBottom } from "./styled";
 import useFilter from "../../hooks/useFilter";
 import usePagination from "../../hooks/usePagination";
 
@@ -27,7 +27,7 @@ const Products = () => {
   const {
     currentPage,
     setCurrentPage,
-    currentProducts, 
+    currentProducts,
     numberOfPages,
     numberOfProductsShowing,
     setNumberOfProductsShowing,
@@ -56,7 +56,6 @@ const Products = () => {
     setNumberOfProductsShowing(16);
   }, [filterApplyed]);
 
-
   return (
     <section>
       <Navigation>
@@ -72,11 +71,16 @@ const Products = () => {
           numberOfProductsShowing={numberOfProductsShowing}
         />
       </Navigation>
-      {currentProducts.length > 0 && (
-        <ProductList
-          products={currentProducts}
+      {currentProducts.length > 0 && <ProductList products={currentProducts} />}
+      <WrapperBottom>
+        <Pagination
+          handleNextPage={handleNextPage}
+          handlePrevPage={handlePrevPage}
+          numberOfPages={numberOfPages}
+          currentPage={currentPage}
+          numberOfProductsShowing={numberOfProductsShowing}
         />
-      )}
+      </WrapperBottom>
     </section>
   );
 };
