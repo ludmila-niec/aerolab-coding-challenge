@@ -3,7 +3,7 @@ import imgSm from "../../assets/hero-sm.png";
 import imgMd from "../../assets/hero-lg.png";
 import { Container, Image, Title } from "./styled";
 
-const Hero = () => {
+const Hero = ({title}) => {
   return (
     <section>
       <Container>
@@ -12,9 +12,9 @@ const Hero = () => {
           sizes="
           (max-width: 899px) 900w, 1950w"
           src={imgSm}
-          alt="Electronics Banner"
+          alt="Headphones Banner"
         />
-        <Title>Electronics</Title>
+        <Title>{title}</Title>
       </Container>
     </section>
   );

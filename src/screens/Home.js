@@ -6,7 +6,7 @@ import Products from "../components/Products";
 const Home = () => {
   return (
     <>
-      <Hero />
+      <Hero title='Electronics' />
       <Layout>
         <Products />
       </Layout>
