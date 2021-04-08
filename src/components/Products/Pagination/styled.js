@@ -17,7 +17,7 @@ export const ButtonWrapper = styled.div`
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 3px;
   }
 `;
 
@@ -32,16 +32,19 @@ export const Button = styled.button`
     border: 2px solid blue;
     border-radius: 50px;
   }
+
+  @media ${({ theme }) => theme.mediaQuery.mediaLg} {
+    & > svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
 `;
 
 export const Text = styled.p`
   font-size: 1rem;
   color: ${({ theme }) => theme.gray300};
 
-  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    padding-right: 1rem;
-    border-right: 1px solid ${({ theme }) => theme.gray100};
-  }
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     font-size: 1.2rem;
   }

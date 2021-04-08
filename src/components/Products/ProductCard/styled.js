@@ -5,11 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #ffffff;
-  box-shadow: 4px 4px 17px 1px rgba(0, 0, 0, 0.17);
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 1rem;
   position: relative;
-  transition:all .4s;
+  transition: all 0.4s;
 
   & > svg {
     position: absolute;
@@ -17,7 +17,6 @@ export const Container = styled.div`
     right: 0;
     margin: 1rem;
   }
-
 `;
 
 export const WrapperImg = styled.div`
@@ -35,11 +34,11 @@ export const WrapperInfo = styled.div`
   padding: 1rem;
   text-transform: capitalize;
   p:first-of-type {
-    /* font-size: 1rem; */
+    font-size: 0.8rem;
     margin-bottom: 0.2rem;
   }
   p:last-of-type {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: ${({ theme }) => theme.gray300};
   }
 `;

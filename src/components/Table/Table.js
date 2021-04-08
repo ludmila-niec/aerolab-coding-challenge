@@ -37,7 +37,7 @@ const Table = ({ history }) => {
                     <p>{category}</p>
                     <WrapperFlex>
                       <p className="cost">{cost}</p>
-                      <Coin width="15px" height="15px" />
+                      <Coin className="coin" width="15px" height="15px" />
                     </WrapperFlex>
                   </ProductDetail>
                 </WrapperFlex>

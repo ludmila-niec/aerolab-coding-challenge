@@ -50,7 +50,7 @@ const Header = () => {
           <Logo width="30px" height="27px" />
           <WrapperFlex>
             <Username>{user.name}</Username>
-            <Button onClick={() => setIsOpen(true)}>
+            <Button onClick={() => setIsOpen(!isOpen)}>
               <Text>{user.points}</Text>
               <Coin width="25px" height="25px" />
               <Text>+</Text>

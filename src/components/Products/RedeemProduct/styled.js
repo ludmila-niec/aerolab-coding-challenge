@@ -16,15 +16,15 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h3`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: ${({ theme }) => theme.gray300};
   font-weight: 600;
   text-align: center;
   margin: 1rem 0;
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    font-size: 1.8rem;
-    margin: 2rem 0;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -40,13 +40,6 @@ export const ImageWrapper = styled.div`
     margin: 0 auto;
   }
 
-  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    margin-bottom: 1rem;
-    & > img {
-      height: 100%;
-      width: 100%;
-    }
-  }
 `;
 
 const ImageZoom = keyframes`
@@ -62,18 +55,12 @@ export const Image = styled.img`
 export const CostWrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  margin-bottom: 1rem;
   & > p {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: ${({ theme }) => theme.gray300};
     margin-right: 0.5rem;
   }
 
-  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    & > p {
-      font-size: 2.5rem;
-    }
-  }
 `;
 
 export const ButtonGroup = styled.div`

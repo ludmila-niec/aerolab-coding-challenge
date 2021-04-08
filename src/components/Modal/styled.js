@@ -33,8 +33,12 @@ export const Container = styled.div`
     width: 95%;
   }
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
-    width: 70%;
+    width: 80%;
     margin-top: 7rem;
+  }
+  @media ${({ theme }) => theme.mediaQuery.mediaLg} {
+    width: 60%;
+    margin-top: 5rem;
   }
 `;
 
@@ -63,11 +67,5 @@ export const Header = styled.div`
     border: none;
     background: none;
     cursor: pointer;
-  }
-
-  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    & > h3 {
-      font-size: 2rem;
-    }
   }
 `;

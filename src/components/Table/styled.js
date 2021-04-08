@@ -106,6 +106,13 @@ export const ProductDetail = styled.div`
 export const WrapperFlex = styled.div`
   display: flex;
   align-items: center;
+
+  @media ${({ theme }) => theme.mediaQuery.mediaMd} {
+    & > svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
 `;
 
 export const Image = styled.img`

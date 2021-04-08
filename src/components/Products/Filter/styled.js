@@ -21,15 +21,17 @@ export const WrapperFlex = styled.div`
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     flex: 1;
-    margin: 0 1rem;
+    margin: 0;
     justify-content: flex-start;
   }
 `;
 
 export const Label = styled.label`
   font-size: 1rem;
+  border-left: 1px solid ${({ theme }) => theme.gray100};
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
-    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;git a
   }
 `;
 
@@ -43,13 +45,12 @@ export const Button = styled.button`
   border: none;
   border-radius: 50px;
   padding: 0.4rem 1rem;
-  /* margin-right:0.8rem; */
   transition: 0.4s;
   cursor: pointer;
 
   &:hover {
     background-color: ${({ active, theme }) => !active && theme.colorSecondary};
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
