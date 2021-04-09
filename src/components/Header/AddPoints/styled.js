@@ -1,4 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+// const coinRotate = keyframes`
+// 50% {transform: rotateY(180deg);}
+// `;
+const coinRotate = keyframes`
+30% {transform: translateY(10px)}
+50% {transform: translateY(-30px);}
+75% {transform: translateY(-30px);}
+100% {transform: rotateY(180deg)}
+
+`;
 
 export const Wrapper = styled.div`
   flex: 1;
@@ -14,9 +25,9 @@ export const Wrapper = styled.div`
     padding: 1rem 0;
   }
 
-  @media ${({theme}) => theme.mediaQuery.mediaMd}{
+  @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     justify-content: space-evenly;
-    padding:2rem;
+    padding: 2rem;
   }
 `;
 
@@ -42,13 +53,15 @@ export const CardStyled = styled.div`
   }
   & > svg {
     min-height: 100px;
+    animation: ${coinRotate} 2s ease 0.2s 2;
+    animation-direction:alternate
   }
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     width: 40%;
   }
-  @media ${({theme}) => theme.mediaQuery.mediaMd}{
-    width:30%
+  @media ${({ theme }) => theme.mediaQuery.mediaMd} {
+    width: 30%;
   }
 `;
 
@@ -85,9 +98,9 @@ export const WrapperLoading = styled.div`
     padding: 2rem;
   }
 
-  @media ${({theme}) => theme.mediaQuery.mediaSm}{
-    & > p{
-      font-size:2.5rem;
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    & > p {
+      font-size: 2.5rem;
     }
   }
 `;

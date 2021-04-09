@@ -30,6 +30,7 @@ const Addpoints = ({ status, addPoints, resetStatus }) => {
           key={index}
           amount={points.value}
           addPoints={addPoints}
+          index={index}
         />
       ))}
     </Wrapper>

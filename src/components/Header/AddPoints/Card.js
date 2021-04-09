@@ -2,7 +2,7 @@ import React from "react";
 import { CardStyled, Button } from "./styled";
 import Coin from "../../icons/Coin";
 
-const Card = ({ amount, addPoints}) => {
+const Card = ({ amount, addPoints, index}) => {
   return (
     <CardStyled>
       <p>+{amount}</p>

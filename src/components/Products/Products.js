@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
 import ProductList from "./ProductList";
+import Spinner from "../Spinner";
 import * as api from "../../service/productApi";
-import { Navigation, WrapperBottom } from "./styled";
+import { Navigation, WrapperBottom, LoadingContainer } from "./styled";
 import useFilter from "../../hooks/useFilter";
 import usePagination from "../../hooks/usePagination";
 
@@ -56,6 +57,13 @@ const Products = () => {
     setNumberOfProductsShowing(16);
   }, [filterApplyed]);
 
+  const loadingState = (
+    <LoadingContainer>
+      <Spinner />
+      <p>Loading products</p>
+    </LoadingContainer>
+  );
+  const isProductListLoaded = currentProducts.length > 0;
   return (
     <section>
       <Navigation>
@@ -71,7 +79,13 @@ const Products = () => {
           numberOfProductsShowing={numberOfProductsShowing}
         />
       </Navigation>
-      {currentProducts.length > 0 && <ProductList products={currentProducts} />}
+      {isLoading ? (
+        loadingState
+      ) : isProductListLoaded ? (
+        <ProductList products={currentProducts} />
+      ) : (
+        <h2>{error}</h2>
+      )}
       <WrapperBottom>
         <Pagination
           handleNextPage={handleNextPage}

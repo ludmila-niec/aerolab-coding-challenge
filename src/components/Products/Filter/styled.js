@@ -29,9 +29,9 @@ export const WrapperFlex = styled.div`
 export const Label = styled.label`
   font-size: 1rem;
   border-left: 1px solid ${({ theme }) => theme.gray100};
-  @media ${({ theme }) => theme.mediaQuery.mediaMd} {
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     padding: 0.5rem 1rem;
-    font-size: 1.2rem;git a
+    font-size: 1.2rem;
   }
 `;
 

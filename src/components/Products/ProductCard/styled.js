@@ -1,4 +1,9 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const onLoadProduct = keyframes`
+from {opacity:0;}
+to {opacity:1; }
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -10,7 +15,8 @@ export const Container = styled.div`
   padding: 1rem;
   position: relative;
   transition: all 0.4s;
-
+  animation: ${onLoadProduct} 3s cubic-bezier(0.18, 0.89, 0.32, 1.28)
+    ${({ index }) => index * 0.05 + "s"};
   & > svg {
     position: absolute;
     top: 0;

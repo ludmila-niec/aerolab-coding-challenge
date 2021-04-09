@@ -1,13 +1,24 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import {Link} from 'react-router-dom'
 
 export const HeaderStyled = styled.header`
   height: 8vh;
   width: 100%;
   background-color: #ffffff;
   position: fixed;
-  top:0;
-  z-index:20;
+  top: 0;
+  z-index: 20;
 `;
+
+const FloatLogo = keyframes`
+0% {transform: translateY(5px)}
+50% {transform: rotateZ(10deg); transform:translateX(10px)}
+`;
+
+const showUserMenu = keyframes`
+0% {transform:translateY(-10px); opacity:0}
+50% { opacity:1}
+`
 
 export const Navbar = styled.nav`
   height: 100%;
@@ -15,6 +26,13 @@ export const Navbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 0 1.2rem;
+
+  & #logo {
+    & > svg {
+      animation: ${FloatLogo} 8s linear infinite;
+      animation-direction: alternate;
+    }
+  }
 `;
 
 export const WrapperFlex = styled.div`
@@ -23,15 +41,47 @@ export const WrapperFlex = styled.div`
   justify-content: space-around;
 `;
 
+export const UserWrapper = styled.div`
+display:flex;
+align-items:center;
+justify-content:center;
+margin-right:1rem;
+position:relative;
+cursor: pointer;
+
+`
+
 export const Username = styled.p`
   font-size: 1rem;
   color: ${({ theme }) => theme.gray300};
-  margin-right:1rem;
+  margin-right: 0.5rem;
 
-  @media ${({theme}) => theme.mediaQuery.mediaSm}{
-    font-size:1.2rem;
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    font-size: 1.2rem;
   }
 `;
+
+// user menu
+export const UserMenu = styled.div`
+position:absolute;
+right:0;
+top:40px;
+width:130px;
+padding:1rem;
+border-bottom-right-radius: 5px;
+border-bottom-left-radius: 5px;
+background-color:#FFFFFF;
+animation: ${showUserMenu} .2s linear;
+
+`
+
+export const LinkStyled = styled(Link)`
+text-decoration:none;
+color: ${({theme}) => theme.gray200};
+&:hover{
+color: ${({theme}) => theme.colorSecondary}
+}
+`
 
 export const Button = styled.button`
   font-family: "Source Sans Pro", sans-serif;
@@ -47,17 +97,17 @@ export const Button = styled.button`
   & > p {
     margin: 0 0.3rem;
   }
-  p:last-of-type{
+  p:last-of-type {
     font-size: 1.4rem;
   }
 
-  @media ${({theme}) => theme.mediaQuery.mediaSm}{
-    & > p{
-      font-size:1.2rem;
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    & > p {
+      font-size: 1.2rem;
     }
-    p:last-of-type{
-    font-size: 1.6rem;
-  }
+    p:last-of-type {
+      font-size: 1.6rem;
+    }
   }
 `;
 
@@ -65,3 +115,4 @@ export const Text = styled.p`
   font-size: 1rem;
   color: ${({ theme }) => theme.gray300};
 `;
+

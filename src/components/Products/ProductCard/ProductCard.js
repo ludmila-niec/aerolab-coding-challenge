@@ -16,7 +16,7 @@ import {
   Divider,
 } from "./styled";
 
-const ProductCard = ({ data }) => {
+const ProductCard = ({ data, index }) => {
   const [display, setDisplay] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { name, category, cost, img } = data;
@@ -61,6 +61,7 @@ const ProductCard = ({ data }) => {
   return (
     <>
       <Container
+      index={index}
         ref={containerRef}
       >
         {cost <= user.points ? (

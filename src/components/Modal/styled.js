@@ -1,4 +1,14 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const WindowOpen = keyframes`
+from {opacity:0; transform: translateY(-100%)}
+to { opacity: 1}
+`;
+
+const BackdropAppear = keyframes`
+from {opacity:0}
+to {opacity: 1}
+`
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -17,6 +27,7 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  animation: ${BackdropAppear} .2s linear;
 `;
 
 export const Container = styled.div`
@@ -27,6 +38,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+  animation: ${WindowOpen} .5s cubic-bezier(0.38, 0.25, 0.41, 1.19);
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     margin-top: 10rem;

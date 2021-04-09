@@ -23,3 +23,23 @@ export const WrapperBottom = styled.div`
   padding-bottom: 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.gray100};
 `;
+
+export const LoadingContainer = styled.div`
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  & > p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 2rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    & > p {
+      font-size: 2rem;
+    }
+  }
+`;
