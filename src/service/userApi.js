@@ -9,6 +9,7 @@ export async function getUserData() {
     return data;
   } catch (err) {
     console.error(err, "Error fetching user personal information");
+    throw err;
   }
 }
 
@@ -24,6 +25,7 @@ export async function addPoints(amount) {
     return data;
   } catch (err) {
     console.error(err, "Error trying to add more points");
+    throw err;
   }
 }
 
@@ -35,5 +37,6 @@ export async function getUserHistory() {
     return data;
   } catch (err) {
     console.error(err, "Error fetching user redeem history");
+    throw err;
   }
 }

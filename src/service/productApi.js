@@ -10,5 +10,6 @@ export async function getProducts(){
 
     }catch(err){
         console.error(err, "Error fetching products list")
+        throw err;
     }
 }

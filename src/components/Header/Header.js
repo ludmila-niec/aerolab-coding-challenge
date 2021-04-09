@@ -87,6 +87,9 @@ const Header = () => {
         {status === STATUS.RESOLVED && (
           <Toast color="success">Points successfully updated!</Toast>
         )}
+        {status === STATUS.REJECTED && (
+          <Toast color="error">Error: Failed to update points</Toast>
+        )}
       </HeaderStyled>
       <Modal
         isOpen={isOpen}

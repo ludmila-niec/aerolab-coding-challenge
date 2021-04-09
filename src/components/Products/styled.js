@@ -24,7 +24,7 @@ export const WrapperBottom = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.gray100};
 `;
 
-export const LoadingContainer = styled.div`
+export const WrapperFlex = styled.div`
   height: 500px;
   display: flex;
   flex-direction: column;
@@ -37,9 +37,18 @@ export const LoadingContainer = styled.div`
     margin: 2rem;
   }
 
+  & .error {
+    font-size: 1rem;
+    margin: 0;
+    font-style: italic;
+  }
+
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     & > p {
       font-size: 2rem;
+    }
+    & .error {
+      font-size: 1.8rem;
     }
   }
 `;

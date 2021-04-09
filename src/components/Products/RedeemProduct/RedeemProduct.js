@@ -22,19 +22,29 @@ const STATUS = {
 const RedeemProduct = ({ data, redeemProduct, onClose }) => {
   const { _id, name, cost, img } = data;
   const [status, setStatus] = useState(STATUS.IDLE);
-  const [error, setError] = useState("");
 
   const handleRedeemProduct = async (productId, cost) => {
     try {
       setStatus(STATUS.PENDING);
       await redeemProduct(productId, cost);
       setStatus(STATUS.RESOLVED);
-    } catch (err) {
+    } catch(error) {
       setStatus(STATUS.REJECTED);
-      setError("Error: Failed to redeem product");
-      console.error(err);
     }
   };
+
+  
+
+  if (status === STATUS.REJECTED) {
+    return (
+      <Container>
+        <Title>Something went wrong</Title>
+        <Toast top="8vh" color="error">
+          Error: Fail to redeem product
+        </Toast>
+      </Container>
+    );
+  }
   if (status === STATUS.RESOLVED) {
     return (
       <Container>

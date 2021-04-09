@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import ProductList from "./ProductList";
 import Spinner from "../Spinner";
 import * as api from "../../service/productApi";
-import { Navigation, WrapperBottom, LoadingContainer } from "./styled";
+import { Navigation, WrapperBottom, WrapperFlex } from "./styled";
 import useFilter from "../../hooks/useFilter";
 import usePagination from "../../hooks/usePagination";
 
@@ -14,8 +14,14 @@ export const TYPES = {
   HIGHEST_PRICE: "HIGHEST_PRICE",
 };
 
+const STATUS = {
+  PENDING: "PENDING",
+  RESOLVED: "RESOLVED",
+  REJECTED: "REJECTED",
+};
+
 const Products = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [status, setStatus] = useState(STATUS.PENDING);
   const [productList, setProductList] = useState([]);
   const {
     filteredList,
@@ -36,8 +42,6 @@ const Products = () => {
     handlePrevPage,
   } = usePagination(filteredList);
 
-  const [error, setError] = useState("");
-
   useEffect(() => {
     if (productList.length > 0) return;
     api
@@ -45,10 +49,10 @@ const Products = () => {
       .then((data) => {
         setProductList(data);
         setFilteredList(data);
-        setIsLoading(false);
+        setStatus(STATUS.RESOLVED);
       })
-      .catch((err) => {
-        setError("Error loading products");
+      .catch(() => {
+        setStatus(STATUS.REJECTED);
       });
   }, []);
 
@@ -57,13 +61,24 @@ const Products = () => {
     setNumberOfProductsShowing(16);
   }, [filterApplyed]);
 
-  const loadingState = (
-    <LoadingContainer>
-      <Spinner />
-      <p>Loading products</p>
-    </LoadingContainer>
-  );
-  const isProductListLoaded = currentProducts.length > 0;
+  if (status === STATUS.PENDING) {
+    return (
+      <WrapperFlex>
+        <Spinner />
+        <p>Loading Products</p>
+      </WrapperFlex>
+    );
+  }
+
+  if (status === STATUS.REJECTED) {
+    return (
+      <WrapperFlex>
+        <p>Something went wrong</p>
+        <p className="error">Failed to load products</p>
+      </WrapperFlex>
+    );
+  }
+
   return (
     <section>
       <Navigation>
@@ -79,13 +94,7 @@ const Products = () => {
           numberOfProductsShowing={numberOfProductsShowing}
         />
       </Navigation>
-      {isLoading ? (
-        loadingState
-      ) : isProductListLoaded ? (
-        <ProductList products={currentProducts} />
-      ) : (
-        <h2>{error}</h2>
-      )}
+      <ProductList products={currentProducts} />
       <WrapperBottom>
         <Pagination
           handleNextPage={handleNextPage}

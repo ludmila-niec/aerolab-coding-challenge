@@ -55,6 +55,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
+  min-height:50px;
   background: linear-gradient(
     180deg,
     rgba(21, 219, 255, 0.81) 0%,

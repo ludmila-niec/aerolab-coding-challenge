@@ -90,7 +90,7 @@ const ProductCard = ({ data, index }) => {
       <Modal
         isOpen={isOpenModal}
         onClose={() => setIsOpenModal(false)}
-        title="Great choice!"
+        
       >
         <RedeemProduct
           data={data}

@@ -2,6 +2,13 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import * as userApi from "../../service/userApi";
 import * as productApi from "../../service/redeemApi";
 
+const STATUS = {
+  IDLE: "IDLE",
+  PENDING: "PENDING",
+  RESOLVED: "RESOLVED",
+  REJECTED: "REJECTED",
+};
+
 const initialState = {
   _id: "",
   name: "",
@@ -19,12 +26,10 @@ function UserProvider({ children }) {
 
   //   get user data
   useEffect(() => {
-    setErrors({});
     userApi
       .getUserData()
       .then((data) => {
         setUser(data);
-        setLoading(false);
       })
       .catch(() => {
         setErrors({ user: "Fail to load user information" });
@@ -38,7 +43,7 @@ function UserProvider({ children }) {
       await userApi.addPoints(amount);
       setUser({ ...user, points: user.points + amount });
     } catch (err) {
-      console.log(err);
+      throw err;
     }
   }
 
@@ -48,7 +53,7 @@ function UserProvider({ children }) {
       await productApi.redeemProduct(productId);
       setUser({ ...user, points: user.points - cost });
     } catch (err) {
-      console.log(err);
+      throw err;
     }
   }
 

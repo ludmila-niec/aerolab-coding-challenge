@@ -33,11 +33,12 @@ export const TableHeading = styled.th`
   );
   color: #ffffff;
   font-weight: 600;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.8rem;
   text-align: left;
 
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     font-size: 1.6rem;
+    padding-left:1.5rem;
   }
 `;
 

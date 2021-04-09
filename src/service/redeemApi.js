@@ -13,5 +13,6 @@ export async function redeemProduct(productId) {
     return data;
   } catch (error) {
     console.error(error, "Fail to reddem product with id: ", productId);
+    throw error;
   }
 }
