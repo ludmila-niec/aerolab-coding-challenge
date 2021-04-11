@@ -8,8 +8,11 @@ const Logo = ({ width, height }) => {
       viewBox="0 0 39 36"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-labelledby="logo-title-id"
     >
-      <title>logo</title>
+      <title id="logo-title-id">logo</title>
+      <desc id='logo-desc-id'>orange kite</desc>
       <desc>Created with Sketch.</desc>
       <defs>
         <linearGradient

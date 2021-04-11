@@ -28,12 +28,10 @@ const RedeemProduct = ({ data, redeemProduct, onClose }) => {
       setStatus(STATUS.PENDING);
       await redeemProduct(productId, cost);
       setStatus(STATUS.RESOLVED);
-    } catch(error) {
+    } catch (error) {
       setStatus(STATUS.REJECTED);
     }
   };
-
-  
 
   if (status === STATUS.REJECTED) {
     return (
@@ -47,42 +45,48 @@ const RedeemProduct = ({ data, redeemProduct, onClose }) => {
   }
   if (status === STATUS.RESOLVED) {
     return (
-      <Container>
-        <Title>Congratulations! You've redeem "{name}"</Title>
-        <ImageWrapper>
-          <Image src={img.url} alt={name} />
-        </ImageWrapper>
+      <>
+        <Container>
+          <Title>Congratulations! You've redeem "{name}"</Title>
+          <ImageWrapper>
+            <Image src={img.url} alt={name} />
+          </ImageWrapper>
+        </Container>
         <Toast top="8vh" color="success">
           You've redeem the product successfully
         </Toast>
-      </Container>
+      </>
     );
   }
   return (
-    <>
-      <Container>
-        <Title>Are you sure you want to redeem "{name}"?</Title>
-        <ImageWrapper>
-          <img src={img.url} alt={name} />
-        </ImageWrapper>
-        <CostWrapper>
-          <p>- {cost} Points</p>
-          <Coin />
-        </CostWrapper>
-        <ButtonGroup>
-          {status === STATUS.PENDING ? (
-            <Spinner />
-          ) : (
-            <>
-              <Button primary onClick={() => handleRedeemProduct(_id, cost)}>
-                Confirm
-              </Button>
-              <Button onClick={onClose}>Cancel</Button>
-            </>
-          )}
-        </ButtonGroup>
-      </Container>
-    </>
+    <Container>
+      <Title>Are you sure you want to redeem "{name}"?</Title>
+      <ImageWrapper>
+        <img src={img.url} alt={name} />
+      </ImageWrapper>
+      <CostWrapper>
+        <p>- {cost} Points</p>
+        <Coin />
+      </CostWrapper>
+      <ButtonGroup>
+        {status === STATUS.PENDING ? (
+          <Spinner />
+        ) : (
+          <>
+            <Button
+              aria-label="confirm and redeem product"
+              primary
+              onClick={() => handleRedeemProduct(_id, cost)}
+            >
+              Confirm
+            </Button>
+            <Button aria-label="cancel redeem" onClick={onClose}>
+              Cancel
+            </Button>
+          </>
+        )}
+      </ButtonGroup>
+    </Container>
   );
 };
 

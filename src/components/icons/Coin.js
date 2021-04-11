@@ -8,8 +8,12 @@ const Coin = ({ width, height }) => {
       viewBox="0 0 34 34"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-hidden="true"
+      aria-labelledby="coin-title-id coin-desc-id"
     >
-      <title>money</title>
+      <title id="coin-title-id">Money</title>\
+      <desc id="coin-desc-id">Golden coin</desc>
       <desc>Created with Sketch.</desc>
       <defs>
         <filter

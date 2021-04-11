@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import {
   HeaderStyled,
@@ -34,18 +34,21 @@ const Header = () => {
   const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
   // Modal state
   const [isOpen, setIsOpen] = useState(false);
+  const modalRef = useRef(null);
+  const buttonModalRef = useRef(null);
+  const buttonPointsRef = useRef(null);
   const { state, actions } = useUser();
   const { user } = state;
   const { addPoints } = actions;
-  const history = useHistory()
+  const history = useHistory();
 
   // listen for history changes
-  useEffect(() =>{
-    history.listen(() =>{
-     setIsOpenUserMenu(false)
-     setIsOpen(false) 
-    })
-  },[history])
+  useEffect(() => {
+    history.listen(() => {
+      setIsOpenUserMenu(false);
+      setIsOpen(false);
+    });
+  }, [history]);
 
   const handleAddPoints = async (amount) => {
     try {
@@ -60,41 +63,96 @@ const Header = () => {
   const resetStatus = () => {
     setStatus(STATUS.IDLE);
   };
+
+  const toggleUserMenu = (e) => {
+    if (e.keyCode !== 13) return;
+    setIsOpenUserMenu(!isOpenUserMenu);
+  };
+
+  // MODAL HANDLERS //
+  // when modal is open, focus the close button
+  useEffect(() => {
+    if (isOpen) buttonModalRef.current.focus();
+  }, [isOpen]);
+
+  const onOpen = () => {
+    setIsOpen(true);
+    toggleScrollLock();
+  };
+
+  const onClose = () => {
+    setIsOpen(false);
+    buttonPointsRef.current.focus();
+    toggleScrollLock();
+  };
+
+  // avoid scrolling the page when modal is open
+  const toggleScrollLock = () => {
+    const htmlDOM = document.querySelector("html");
+    if (isOpen) return (htmlDOM.style.overflow = "visible");
+    htmlDOM.style.overflow = "hidden";
+  };
   return (
     <>
       <HeaderStyled>
         <Navbar>
-          <Link id="logo" to="/home">
+          <Link id="logo" to="/home" aria-label="go to homepage">
             <Logo width="30px" height="27px" />
           </Link>
           <WrapperFlex>
-            <UserWrapper onClick={() => setIsOpenUserMenu(!isOpenUserMenu)}>
+            <UserWrapper
+              tabIndex="0"
+              role="button"
+              aria-label="Toggle user's menu"
+              onClick={() => setIsOpenUserMenu(!isOpenUserMenu)}
+              onKeyDown={toggleUserMenu}
+            >
               <Username>{user.name}</Username>
               <ArrowDown />
               {isOpenUserMenu && (
-                <UserMenu id='user-menu'>
-                  <LinkStyled to="/history">My History</LinkStyled>
+                <UserMenu id="user-menu">
+                  <LinkStyled to="/history" aria-label="go to user's history">
+                    My History
+                  </LinkStyled>
                 </UserMenu>
               )}
             </UserWrapper>
-            <Button onClick={() => setIsOpen(!isOpen)}>
-              <Text>{user.points}</Text>
-              <Coin width="25px" height="25px" />
-              <Text>+</Text>
+            <Button
+              aria-label="Add more points"
+              ref={buttonPointsRef}
+              onClick={onOpen}
+            >
+              <WrapperFlex id="points-container">
+                <Text aria-label={`current points ${user.points}`}>
+                  {user.points}
+                </Text>
+                <Coin width="25px" height="25px" />
+                <Text aria-hidden="true" id="plus-sign">
+                  +
+                </Text>
+              </WrapperFlex>
             </Button>
           </WrapperFlex>
         </Navbar>
         {status === STATUS.RESOLVED && (
-          <Toast color="success">Points successfully updated!</Toast>
+          <Toast color="success" >
+            Points successfully updated!
+          </Toast>
         )}
         {status === STATUS.REJECTED && (
-          <Toast color="error">Error: Failed to update points</Toast>
+          <Toast color="error" >
+            Error: Failed to update points
+          </Toast>
         )}
       </HeaderStyled>
+      <>
+      </>
       <Modal
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={onClose}
         title="Get More Points!"
+        modalRef={modalRef}
+        buttonRef={buttonModalRef}
       >
         <AddPoints
           status={status}

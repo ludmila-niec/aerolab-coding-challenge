@@ -19,6 +19,7 @@ const Filter = ({ filterApplyed, actions }) => {
       <WrapperFlex>
         {filterBtns.map((filter) => (
           <Button
+            aria-label={`sort products by ${filter.name}`}
             key={filter.type}
             active={filter.type === filterApplyed}
             onClick={() => filter.action(filter.type)}

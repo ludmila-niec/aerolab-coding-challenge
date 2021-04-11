@@ -19,33 +19,68 @@ import {
 const ProductCard = ({ data, index }) => {
   const [display, setDisplay] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { name, category, cost, img } = data;
+  // user context
   const { state, actions } = useUser();
   const { user } = state;
   const { redeemProduct } = actions;
+  // refs
   const containerRef = useRef(null);
+  const modalRef = useRef(null);
+  const closeModalBtnRef = useRef(null);
+  const { name, category, cost, img } = data;
 
   useEffect(() => {
     const container = containerRef.current;
-    
-    function showOverlay(){
+
+    function showOverlay() {
       setDisplay(true);
       container.style.transform = "translateY(-5%)";
     }
 
-    function hideOverlay(){
+    function hideOverlay() {
       setDisplay(false);
       container.style.transform = "translateY(0)";
     }
 
-    container.addEventListener("mouseenter", showOverlay)
-    container.addEventListener("mouseleave", hideOverlay)
+    container.addEventListener("mouseenter", showOverlay);
+    container.addEventListener("mouseleave", hideOverlay);
 
     return () => {
       container.removeEventListener("mouseenter", showOverlay);
       container.removeEventListener("mouseleave", hideOverlay);
     };
   }, []);
+
+  // when modal is open, focus the 'close' button
+  useEffect(() => {
+    if (isOpenModal) closeModalBtnRef.current.focus();
+  }, [isOpenModal]);
+
+  // MODAL HANDLERS //
+  const onOpen = () => {
+    setIsOpenModal(true);
+    toggleScrollLock();
+  };
+
+  const onClose = () => {
+    setIsOpenModal(false);
+    toggleScrollLock();
+  };
+
+  // avoid scrolling the page when modal is open
+  const toggleScrollLock = () => {
+    const htmlDOM = document.querySelector("html");
+    if (isOpenModal) {
+      return (htmlDOM.style.overflow = "visible");
+    }
+    htmlDOM.style.overflow = "hidden";
+  };
+
+  // keyboard navigation for products
+  const onKeyDown = (e) => {
+    if (e.keyCode === 13) setDisplay(true);
+    if (e.keyCode === 27) setDisplay(false);
+  };
 
   const showOverlay = (
     <Overlay display={display.toString()}>
@@ -54,20 +89,28 @@ const ProductCard = ({ data, index }) => {
         <p>{cost}</p>
         <Coin width="40px" height="45px" />
       </WrapperValue>
-      <Button onClick={() => setIsOpenModal(true)}>Redeem Now</Button>
+      <Button
+        aria-label="select product"
+        onClick={onOpen}
+      >
+        Redeem Now
+      </Button>
     </Overlay>
   );
 
   return (
     <>
       <Container
-      index={index}
+        tabIndex="0"
+        aria-label={name}
+        onKeyDown={onKeyDown}
+        index={index}
         ref={containerRef}
       >
         {cost <= user.points ? (
           <BuyBlue />
         ) : (
-          <Badge>
+          <Badge aria-label="not enought points to redeem">
             You need {Math.abs(user.points - cost)} points
             <Coin width="25px" height="23px" />
           </Badge>
@@ -89,13 +132,14 @@ const ProductCard = ({ data, index }) => {
       </Container>
       <Modal
         isOpen={isOpenModal}
-        onClose={() => setIsOpenModal(false)}
-        
+        onClose={onClose}
+        modalRef={modalRef}
+        buttonRef={closeModalBtnRef}
       >
         <RedeemProduct
           data={data}
           redeemProduct={redeemProduct}
-          onClose={() => setIsOpenModal(false)}
+          onClose={onClose}
         />
       </Modal>
     </>

@@ -25,12 +25,12 @@ const Addpoints = ({ status, addPoints, resetStatus }) => {
   }
   return (
     <Wrapper>
-      {validPoints.map((points, index) => (
+      {validPoints.map((points) => (
         <Card
-          key={index}
+          key={points.value}
           amount={points.value}
           addPoints={addPoints}
-          index={index}
+          
         />
       ))}
     </Wrapper>

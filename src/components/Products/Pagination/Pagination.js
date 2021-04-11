@@ -15,12 +15,12 @@ const Pagination = ({
       <Text>{numberOfProductsShowing} of 32 Products</Text>
       <ButtonWrapper>
         {currentPage < numberOfPages && (
-          <Button onClick={handleNextPage}>
+          <Button aria-label='show next page' onClick={handleNextPage}>
             <ArrowRight width="30px" height="30px" />
           </Button>
         )}
         {currentPage > 1 && currentPage <= numberOfPages && (
-          <Button onClick={handlePrevPage}>
+          <Button aria-label='show previous page' onClick={handlePrevPage}>
             <ArrowLeft width="30px" height="30px" />
           </Button>
         )}

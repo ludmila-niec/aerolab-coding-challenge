@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Layout from '../Layout'
 import Filter from "./Filter";
 import Pagination from "./Pagination";
 import ProductList from "./ProductList";
@@ -80,7 +81,8 @@ const Products = () => {
   }
 
   return (
-    <section>
+    <section aria-label='Products section'>
+      <Layout>
       <Navigation>
         <Filter
           filterApplyed={filterApplyed}
@@ -104,6 +106,7 @@ const Products = () => {
           numberOfProductsShowing={numberOfProductsShowing}
         />
       </WrapperBottom>
+      </Layout>
     </section>
   );
 };

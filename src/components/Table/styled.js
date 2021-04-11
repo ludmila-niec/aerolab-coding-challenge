@@ -118,12 +118,16 @@ export const WrapperFlex = styled.div`
 
 export const Image = styled.img`
   width: 80px;
+  min-height:57px;
   height: auto;
+  background-color: ${({theme}) => theme.gray100};
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     width: 100px;
+    min-height:72px;
   }
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     width: 150px;
+    min-height:108px;
   }
 `;

@@ -3,7 +3,7 @@ import { Container, Ring } from "./styled";
 
 const Spinner = ({ width, height }) => {
   return (
-    <Container>
+    <Container aria-label='Loading'>
       <Ring width={width} height={height} />
     </Container>
   );

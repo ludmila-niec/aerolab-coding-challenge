@@ -5,7 +5,7 @@ from {opacity:0;}
 to {opacity:1; }
 `;
 
-export const Container = styled.div`
+export const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,9 +27,10 @@ export const Container = styled.div`
 
 export const WrapperImg = styled.div`
   flex: 1;
-  min-height: 182px;
-  min-width: 252px;
   & > img {
+    min-height: 182px;
+    min-width: 252px;
+    background-color: ${({ theme }) => theme.gray100};
     height: 100%;
     width: 100%;
   }

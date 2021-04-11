@@ -1,8 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-// const coinRotate = keyframes`
-// 50% {transform: rotateY(180deg);}
-// `;
 const coinRotate = keyframes`
 30% {transform: translateY(10px)}
 50% {transform: translateY(-30px);}

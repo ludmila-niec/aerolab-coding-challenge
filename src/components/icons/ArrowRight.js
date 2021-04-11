@@ -8,8 +8,11 @@ const ArrowRight = ({width, height}) => {
       viewBox="0 0 48 48"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-labelledby="arrow-right-title-id arrow-right-desc-id"
     >
-      <title>arrow-next</title>
+      <title id='arrow-right-title-id'>arrow next</title>
+      <desc id='arrow-right-desc-id'>Icon with arrow facing the right side</desc>
       <desc>Created with Sketch.</desc>
       <defs></defs>
       <g

@@ -8,7 +8,11 @@ const ArrowDrown = () => {
       viewBox="0 0 12 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-labelledby="icon-arrow-down-title icon-arrow-down-desc"
     >
+      <title id="icon-arrow-down-title">Arrow down</title>
+      <desc id="icon-arrow-down-desc">icon of an arrow facing down</desc>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
