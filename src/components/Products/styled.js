@@ -16,7 +16,6 @@ export const Navigation = styled.div`
 
 export const WrapperBottom = styled.div`
   height: 65px;
-  width: 100%;
   display: flex;
   align-items: center;
   position: relative;

@@ -135,6 +135,7 @@ const ProductCard = ({ data, index }) => {
         onClose={onClose}
         modalRef={modalRef}
         buttonRef={closeModalBtnRef}
+        ariaLabel='redeem product process'
       >
         <RedeemProduct
           data={data}

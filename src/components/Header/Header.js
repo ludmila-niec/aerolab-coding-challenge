@@ -63,35 +63,22 @@ const Header = () => {
   const resetStatus = () => {
     setStatus(STATUS.IDLE);
   };
-
+  
   const toggleUserMenu = (e) => {
     if (e.keyCode !== 13) return;
     setIsOpenUserMenu(!isOpenUserMenu);
   };
 
   // MODAL HANDLERS //
-  // when modal is open, focus the close button
-  useEffect(() => {
-    if (isOpen) buttonModalRef.current.focus();
-  }, [isOpen]);
-
   const onOpen = () => {
     setIsOpen(true);
-    toggleScrollLock();
   };
 
   const onClose = () => {
     setIsOpen(false);
     buttonPointsRef.current.focus();
-    toggleScrollLock();
   };
 
-  // avoid scrolling the page when modal is open
-  const toggleScrollLock = () => {
-    const htmlDOM = document.querySelector("html");
-    if (isOpen) return (htmlDOM.style.overflow = "visible");
-    htmlDOM.style.overflow = "hidden";
-  };
   return (
     <>
       <HeaderStyled>
@@ -135,22 +122,18 @@ const Header = () => {
           </WrapperFlex>
         </Navbar>
         {status === STATUS.RESOLVED && (
-          <Toast color="success" >
-            Points successfully updated!
-          </Toast>
+          <Toast color="success">Points successfully updated!</Toast>
         )}
         {status === STATUS.REJECTED && (
-          <Toast color="error" >
-            Error: Failed to update points
-          </Toast>
+          <Toast color="error">Error: Failed to update points</Toast>
         )}
       </HeaderStyled>
-      <>
-      </>
+      <></>
       <Modal
         isOpen={isOpen}
         onClose={onClose}
         title="Get More Points!"
+        ariaLabel='Get more points'
         modalRef={modalRef}
         buttonRef={buttonModalRef}
       >

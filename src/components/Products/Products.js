@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Layout from '../Layout'
+import Layout from "../Layout";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
 import ProductList from "./ProductList";
 import Spinner from "../Spinner";
-import * as api from "../../service/productApi";
+import { getProducts } from "../../service/productApi";
 import { Navigation, WrapperBottom, WrapperFlex } from "./styled";
 import useFilter from "../../hooks/useFilter";
 import usePagination from "../../hooks/usePagination";
@@ -44,9 +44,7 @@ const Products = () => {
   } = usePagination(filteredList);
 
   useEffect(() => {
-    if (productList.length > 0) return;
-    api
-      .getProducts()
+    getProducts()
       .then((data) => {
         setProductList(data);
         setFilteredList(data);
@@ -55,12 +53,12 @@ const Products = () => {
       .catch(() => {
         setStatus(STATUS.REJECTED);
       });
-  }, []);
+  }, [setFilteredList]);
 
   useEffect(() => {
     setCurrentPage(1);
     setNumberOfProductsShowing(16);
-  }, [filterApplyed]);
+  }, [filterApplyed, setCurrentPage, setNumberOfProductsShowing]);
 
   if (status === STATUS.PENDING) {
     return (
@@ -81,31 +79,31 @@ const Products = () => {
   }
 
   return (
-    <section aria-label='Products section'>
+    <section aria-label="Products section">
       <Layout>
-      <Navigation>
-        <Filter
-          filterApplyed={filterApplyed}
-          actions={{ showMostRecent, showLowestPrice, showHighestPrice }}
-        />
-        <Pagination
-          handleNextPage={handleNextPage}
-          handlePrevPage={handlePrevPage}
-          numberOfPages={numberOfPages}
-          currentPage={currentPage}
-          numberOfProductsShowing={numberOfProductsShowing}
-        />
-      </Navigation>
-      <ProductList products={currentProducts} />
-      <WrapperBottom>
-        <Pagination
-          handleNextPage={handleNextPage}
-          handlePrevPage={handlePrevPage}
-          numberOfPages={numberOfPages}
-          currentPage={currentPage}
-          numberOfProductsShowing={numberOfProductsShowing}
-        />
-      </WrapperBottom>
+        <Navigation>
+          <Filter
+            filterApplyed={filterApplyed}
+            actions={{ showMostRecent, showLowestPrice, showHighestPrice }}
+          />
+          <Pagination
+            handleNextPage={handleNextPage}
+            handlePrevPage={handlePrevPage}
+            numberOfPages={numberOfPages}
+            currentPage={currentPage}
+            numberOfProductsShowing={numberOfProductsShowing}
+          />
+        </Navigation>
+        <ProductList products={currentProducts} />
+        <WrapperBottom>
+          <Pagination
+            handleNextPage={handleNextPage}
+            handlePrevPage={handlePrevPage}
+            numberOfPages={numberOfPages}
+            currentPage={currentPage}
+            numberOfProductsShowing={numberOfProductsShowing}
+          />
+        </WrapperBottom>
       </Layout>
     </section>
   );
