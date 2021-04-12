@@ -15,7 +15,7 @@ export const UserContext = createContext();
 function UserProvider({ children }) {
   const [user, setUser] = useState(initialState);
   const [loading, setLoading] = useState(true);
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState('');
 
   //   get user data
   useEffect(() => {
@@ -23,9 +23,10 @@ function UserProvider({ children }) {
       .getUserData()
       .then((data) => {
         setUser(data);
+        setLoading(false);
       })
       .catch(() => {
-        setErrors({ user: "Fail to load user information" });
+        setError("Oops, something went wrong");
         setLoading(false);
       });
   }, []);
@@ -50,7 +51,7 @@ function UserProvider({ children }) {
     }
   }
 
-  const state = { user, loading, errors };
+  const state = { user, loading, error };
   const actions = {
     addPoints: handleAddpoints,
     redeemProduct: handleRedeemProduct,
