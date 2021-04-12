@@ -47,13 +47,13 @@ const RedeemProduct = ({ data, redeemProduct, onClose }) => {
     return (
       <>
         <Container>
-          <Title>Congratulations! You've redeem "{name}"</Title>
+          <Title>Congratulations! You've redeemed "{name}"</Title>
           <ImageWrapper>
             <Image src={img.url} alt={name} />
           </ImageWrapper>
         </Container>
         <Toast top="8vh" color="success">
-          You've redeem the product successfully
+          You've redeemed the product successfully
         </Toast>
       </>
     );

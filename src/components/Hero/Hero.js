@@ -1,6 +1,6 @@
 import React from "react";
-import imgSm from "../../assets/hero-sm.png";
-import imgMd from "../../assets/hero-lg.png";
+import imgSm from "../../assets/header-x1.png";
+import imgMd from "../../assets/header-x2.png";
 import { Container, Image, Title } from "./styled";
 
 const Hero = ({title}) => {

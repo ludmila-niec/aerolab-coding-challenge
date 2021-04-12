@@ -1,8 +1,18 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const showHero = keyframes`
+from {opacity:0}
+to {opacity:1}
+`
+
+const SlideTitle = keyframes`
+from {left:-20%}
+`
 
 export const Container = styled.div`
   position: relative;
   margin-top:3rem;
+  animation: ${showHero} .8s;
   @media ${({theme}) => theme.mediaQuery.mediaSm}{
     margin-top:5rem;
   }
@@ -23,6 +33,7 @@ export const Title = styled.h1`
   font-size: 1.5rem;
   font-weight:600;
   color: #FFFFFF;
+  animation: ${SlideTitle} 2s;
 
  @media ${({theme}) => theme.mediaQuery.mediaSm}{
    font-size:2.5rem;

@@ -18,7 +18,7 @@ import { useUser } from "../../context/user/UserContext";
 import Modal from "../Modal";
 import AddPoints from "./AddPoints/Addpoints";
 import Toast from "../Toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const STATUS = {
   IDLE: "IDLE",
@@ -41,6 +41,7 @@ const Header = () => {
   const { user } = state;
   const { addPoints } = actions;
   const history = useHistory();
+  const location = useLocation();
 
   // listen for history changes
   useEffect(() => {
@@ -81,7 +82,7 @@ const Header = () => {
 
   return (
     <>
-      <HeaderStyled>
+      <HeaderStyled style={{ opacity: `${location.pathname === "/" ? 0 : 1}` }}>
         <Navbar>
           <Link id="logo" to="/home" aria-label="go to homepage">
             <Logo width="30px" height="27px" />

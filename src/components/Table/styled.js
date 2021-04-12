@@ -1,9 +1,14 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const showTable = keyframes`
+from {opacity:0; transform: translateY(10%)}
+`
 
 export const TableStyled = styled.table`
   width: 100%;
   background-color: #ffffff;
   border-radius: 5px;
+  animation: ${showTable} .8s;
   th,
   td {
     border: 1px solid ${({ theme }) => theme.gray100};
