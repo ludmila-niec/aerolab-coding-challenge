@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import React from "react";
+import React, {useEffect} from "react";
 import { Backdrop, Container, Header } from "./styled";
 import CloseIcon from "../../components/icons/Close";
 
@@ -14,6 +14,16 @@ const Modal = ({
   isOpen,
 }) => {
 
+   // avoid scrolling the page when modal is open
+  useEffect(() =>{
+    const htmlDOM = document.querySelector("html");
+    if (isOpen){
+      (htmlDOM.style.overflow = "hidden");
+      buttonRef.current.focus();
+    }else{
+      htmlDOM.style.overflow = "visible";
+    }
+  },[isOpen, buttonRef])
 
   // close when click outside of the modal
   const onClickAway = (e) => {

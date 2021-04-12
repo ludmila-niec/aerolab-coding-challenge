@@ -1,8 +1,14 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const showNavigation = keyframes`
+from {opacity:0}
+to {opacity:1};
+`
 
 export const Navigation = styled.div`
   display: flex;
   flex-direction: column;
+  animation: ${showNavigation} .8s;
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     flex-direction: row-reverse;
@@ -16,12 +22,10 @@ export const Navigation = styled.div`
 
 export const WrapperBottom = styled.div`
   height: 65px;
-  width: 100%;
   display: flex;
   align-items: center;
   position: relative;
   padding-bottom: 1rem;
-  border-bottom: 1px solid ${({ theme }) => theme.gray100};
 `;
 
 export const WrapperFlex = styled.div`

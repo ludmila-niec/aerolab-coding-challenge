@@ -2,13 +2,6 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import * as userApi from "../../service/userApi";
 import * as productApi from "../../service/redeemApi";
 
-const STATUS = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  RESOLVED: "RESOLVED",
-  REJECTED: "REJECTED",
-};
-
 const initialState = {
   _id: "",
   name: "",

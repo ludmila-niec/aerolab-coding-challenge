@@ -11,9 +11,9 @@ const Addpoints = ({ status, addPoints, resetStatus }) => {
     if (status === STATUS.RESOLVED) {
       setTimeout(() => {
         resetStatus();
-      }, 5000);
+      }, 4000);
     }
-  }, [status]);
+  }, [status, resetStatus]);
 
   if (status === STATUS.PENDING) {
     return (

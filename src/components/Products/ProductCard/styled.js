@@ -17,6 +17,11 @@ export const Container = styled.article`
   transition: all 0.4s;
   animation: ${onLoadProduct} 3s cubic-bezier(0.18, 0.89, 0.32, 1.28)
     ${({ index }) => index * 0.05 + "s"};
+
+  &:focus{
+    outline:none;
+    border: 2px solid blue;
+  }
   & > svg {
     position: absolute;
     top: 0;
@@ -108,8 +113,7 @@ export const Button = styled.button`
   }
   &:focus {
     outline: none;
-    border: 2px solid ${({ theme }) => theme.colorSecondary};
-    /* border: 2px solid blue */
+    border: 2px solid blue
   }
 `;
 
