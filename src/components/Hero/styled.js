@@ -42,4 +42,7 @@ export const Title = styled.h1`
  @media ${({theme}) => theme.mediaQuery.mediaMd}{
    font-size:3.5rem;
  }
+ @media ${({theme}) => theme.mediaQuery.mediaLg}{
+   left:7%;
+ }
 `;
