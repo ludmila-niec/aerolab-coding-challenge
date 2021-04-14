@@ -37,9 +37,7 @@ const Header = () => {
   const modalRef = useRef(null);
   const buttonModalRef = useRef(null);
   const buttonPointsRef = useRef(null);
-  const { state, actions } = useUser();
-  const { user } = state;
-  const { addPoints } = actions;
+  const { state:{user}, actions:{addPoints} } = useUser();
   const history = useHistory();
   const location = useLocation();
 

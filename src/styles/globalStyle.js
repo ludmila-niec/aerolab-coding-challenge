@@ -19,6 +19,11 @@ body{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight:400;
 }
+
+a:focus{
+  outline:none;
+  border: 2px solid blue;
+}
 `;
 
 export default GlobalStyle;

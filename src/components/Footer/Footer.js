@@ -1,20 +1,27 @@
 import React from "react";
-import Github from "../icons/Github";
-import Linkedin from "../icons/Linkedin";
-import Email from "../icons/Email";
-import { Container, Wrapper} from "./styled";
+// import Github from "../icons/Github";
+// import Linkedin from "../icons/Linkedin";
+// import Email from "../icons/Email";
+import { Container, Wrapper } from "./styled";
+import { GitHub, LinkedIn, Email } from "@material-ui/icons";
 
 const socialLinks = [
   {
-    icon: <Github />,
+    icon: <GitHub titleAccess='GitHub icon' />,
+    name: "GitHub",
+    ariaLabel: "Go to Ludmila's github",
     to: "https://github.com/ludmila-niec",
   },
   {
-    icon: <Linkedin />,
+    icon: <LinkedIn  titleAccess='LinkedIn icon'/>,
+    name: "LinkedIn",
+    ariaLabel: "Go to Ludmila's LinkedIn",
     to: "https://www.linkedin.com/in/ludmila-nieczyporuk/",
   },
   {
-    icon: <Email />,
+    icon: <Email titleAccess='Email icon' />,
+    name: "email",
+    ariaLabel: "Send email to Ludmila",
     to: "mailto:ludmila.nieczy@gmail.com",
   },
 ];
@@ -23,18 +30,23 @@ const Footer = () => {
   return (
     <footer>
       <Container>
-        <Wrapper className='author'>Developed by Ludmila Nieczyporuk</Wrapper>
+        <Wrapper className="author">Developed by Ludmila Nieczyporuk</Wrapper>
         <Wrapper>
-          {socialLinks.map((link) => (
-            <a
-              key={link.to}
-              href={link.to}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {link.icon}
-            </a>
-          ))}
+          {socialLinks.map((link) => {
+            const { name, ariaLabel, to, icon } = link;
+            return (
+              <a
+                className="links"
+                key={name}
+                href={to}
+                aria-label={ariaLabel}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {icon}
+              </a>
+            );
+          })}
         </Wrapper>
       </Container>
     </footer>

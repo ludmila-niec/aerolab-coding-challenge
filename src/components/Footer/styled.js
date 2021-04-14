@@ -25,6 +25,17 @@ export const Wrapper = styled.div`
     margin-bottom: 2rem;
   }
 
+  & > a.links{
+    &:hover{
+      & > svg{
+      fill: ${({theme}) => theme.gray300}
+    }
+    }
+    & > svg{
+      fill: ${({theme}) => theme.gray200}
+    }
+  }
+
   @media ${({theme}) => theme.mediaQuery.mediaSm}{
       &.author{
         margin-bottom:0;

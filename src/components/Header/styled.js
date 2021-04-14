@@ -53,6 +53,10 @@ export const UserWrapper = styled.div`
   margin-right: 1rem;
   position: relative;
   cursor: pointer;
+  &:focus{
+    outline:none;
+    border: 2px solid blue;
+  }
 `;
 
 export const Username = styled.p`
@@ -84,6 +88,10 @@ export const LinkStyled = styled(Link)`
   &:hover {
     color: ${({ theme }) => theme.colorSecondary};
   }
+  &:focus{
+    outline:none;
+    border: 2px solid blue;
+  }
 `;
 
 export const Button = styled.button`
@@ -94,6 +102,10 @@ export const Button = styled.button`
   border: none;
   border-radius: 50px;
   cursor: pointer;
+  &:focus{
+    outline:none;
+    border: 2px solid blue;
+  }
 `;
 
 export const Text = styled.p`

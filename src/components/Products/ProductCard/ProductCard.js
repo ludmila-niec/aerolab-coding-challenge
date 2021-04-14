@@ -123,7 +123,7 @@ const ProductCard = ({ data, index }) => {
             alt={name}
           />
         </WrapperImg>
-        <Divider />
+        <Divider aria-hidden='true' />
         <WrapperInfo>
           <p>{category}</p>
           <p>{name}</p>
