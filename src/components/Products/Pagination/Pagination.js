@@ -9,10 +9,11 @@ const Pagination = ({
   numberOfPages,
   currentPage,
   numberOfProductsShowing,
+  totalProducts
 }) => {
   return (
     <Container>
-      <Text>{numberOfProductsShowing} of 32 Products</Text>
+      <Text>{numberOfProductsShowing} of {totalProducts} Products</Text>
       <ButtonWrapper>
         {currentPage < numberOfPages && (
           <Button aria-label='show next page' onClick={handleNextPage}>

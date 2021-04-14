@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Layout from "../Layout";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
 import ProductList from "./ProductList";
 import Spinner from "../Spinner";
-import { getProducts } from "../../service/productApi";
 import { Navigation, WrapperBottom, WrapperFlex } from "./styled";
 import useFilter from "../../hooks/useFilter";
 import usePagination from "../../hooks/usePagination";
@@ -21,9 +20,7 @@ const STATUS = {
   REJECTED: "REJECTED",
 };
 
-const Products = () => {
-  const [status, setStatus] = useState(STATUS.PENDING);
-  const [productList, setProductList] = useState([]);
+const Products = ({ products, status }) => {
   const {
     filteredList,
     setFilteredList,
@@ -31,7 +28,7 @@ const Products = () => {
     showMostRecent,
     showLowestPrice,
     showHighestPrice,
-  } = useFilter(TYPES.MOST_RECENT, productList);
+  } = useFilter(TYPES.MOST_RECENT, products);
   const {
     currentPage,
     setCurrentPage,
@@ -44,21 +41,15 @@ const Products = () => {
   } = usePagination(filteredList);
 
   useEffect(() => {
-    getProducts()
-      .then((data) => {
-        setProductList(data);
-        setFilteredList(data);
-        setStatus(STATUS.RESOLVED);
-      })
-      .catch(() => {
-        setStatus(STATUS.REJECTED);
-      });
-  }, [setFilteredList]);
+    setFilteredList(products);
+  }, [products, setFilteredList]);
 
   useEffect(() => {
-    setCurrentPage(1);
-    setNumberOfProductsShowing(16);
-  }, [filterApplyed, setCurrentPage, setNumberOfProductsShowing]);
+    if (products.length > 16) {
+      setCurrentPage(1);
+      setNumberOfProductsShowing(16);
+    }
+  }, [products.length, filterApplyed, setCurrentPage, setNumberOfProductsShowing]);
 
   if (status === STATUS.PENDING) {
     return (
@@ -92,6 +83,7 @@ const Products = () => {
             numberOfPages={numberOfPages}
             currentPage={currentPage}
             numberOfProductsShowing={numberOfProductsShowing}
+            totalProducts={filteredList.length}
           />
         </Navigation>
         <ProductList products={currentProducts} />
@@ -102,6 +94,7 @@ const Products = () => {
             numberOfPages={numberOfPages}
             currentPage={currentPage}
             numberOfProductsShowing={numberOfProductsShowing}
+            totalProducts={filteredList.length}
           />
         </WrapperBottom>
       </Layout>

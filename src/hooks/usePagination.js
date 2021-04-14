@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function usePagination(filteredList) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [numberOfProductsShowing, setNumberOfProductsShowing] = useState(16);
+  const [numberOfProductsShowing, setNumberOfProductsShowing] = useState(0);
+  useEffect(() => {
+    if (filteredList.length >= 16) {
+      setNumberOfProductsShowing(16);
+    } else {
+      setNumberOfProductsShowing(filteredList.length);
+    }
+  },[filteredList]);
 
   const PRODUCTS_PER_PAGE = 16;
   const indexOfLastProduct = currentPage * PRODUCTS_PER_PAGE;
