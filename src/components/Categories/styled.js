@@ -58,6 +58,7 @@ text-decoration:none;
     fill: ${({ theme }) => theme.gray200};
   }
   &:hover {
+    color:${({theme}) => theme.colorSecondary};
     & > svg {
       fill: ${({ theme }) => theme.colorSecondary};
     }

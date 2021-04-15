@@ -23,12 +23,12 @@ export default function usePagination(filteredList) {
   function handleNextPage() {
     setCurrentPage((prevPage) => prevPage + 1);
     setNumberOfProductsShowing((prevNumber) => prevNumber + PRODUCTS_PER_PAGE);
-    window.scrollTo(0, 300);
+    window.scrollTo(0, 500);
   }
   function handlePrevPage() {
     setCurrentPage((prevPage) => prevPage - 1);
     setNumberOfProductsShowing((prevNumber) => prevNumber - PRODUCTS_PER_PAGE);
-    window.scrollTo(0, 300);
+    window.scrollTo(0, 500);
   }
 
   return {
