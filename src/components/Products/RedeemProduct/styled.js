@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -6,10 +7,12 @@ export const Container = styled.div`
   align-items: center;
   background-color: #ffffff;
   padding: 1rem;
+  min-height: 500px;
   max-height: 75vh;
   overflow-y: auto;
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    min-height: 550px;
     margin: 2rem;
     padding: 2rem;
   }
@@ -34,12 +37,9 @@ export const ImageWrapper = styled.div`
   border-radius: 5px;
 
   & > img {
-    height: 80%;
-    width: 80%;
-    display: block;
-    margin: 0 auto;
+    height: 100%;
+    width: 100%;
   }
-
 `;
 
 const ImageZoom = keyframes`
@@ -60,7 +60,6 @@ export const CostWrapper = styled.div`
     color: ${({ theme }) => theme.gray300};
     margin-right: 0.5rem;
   }
-
 `;
 
 export const ButtonGroup = styled.div`
@@ -78,7 +77,6 @@ export const ButtonGroup = styled.div`
 
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     flex-direction: row-reverse;
-    min-height: 50px;
     button:last-of-type {
       margin-right: 2rem;
     }
@@ -107,5 +105,35 @@ export const Button = styled.button`
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     width: 40%;
     margin-bottom: 0;
+  }
+
+  &:hover {
+    background-color: ${({ theme, primary }) =>
+      primary ? theme.colorSecondary : theme.gray300};
+  }
+`;
+
+export const ButtonLink = styled(Link)`
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.1rem;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: ${({ primary, theme }) =>
+    primary ? theme.colorPrimary : theme.gray200};
+  box-shadow: none;
+  border: none;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  transition: 0.4s;
+  cursor: pointer;
+  margin-bottom: 1rem;
+
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    font-size: 1.5rem;
+  }
+
+  &:hover {
+    background-color: ${({ theme, primary }) =>
+      primary ? theme.colorSecondary : theme.gray300};
   }
 `;

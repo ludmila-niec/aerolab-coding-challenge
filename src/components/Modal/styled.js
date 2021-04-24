@@ -49,6 +49,7 @@ export const Container = styled.div`
   }
   @media ${({ theme }) => theme.mediaQuery.mediaLg} {
     width: 60%;
+    margin-top:3rem;
   }
 `;
 

@@ -2,12 +2,15 @@ import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const HeaderStyled = styled.header`
-  height: 8vh;
+  height: 70px;
   width: 100%;
   background-color: #ffffff;
   position: fixed;
   top: 0;
   z-index: 20;
+  @media ${({theme}) => theme.mediaQuery.mediaSm}{
+    height:70px;
+  }
 `;
 
 const FloatLogo = keyframes`

@@ -11,7 +11,7 @@ from {left:-20%}
 
 export const Container = styled.div`
   position: relative;
-  margin-top:3rem;
+  margin-top:4rem;
   animation: ${showHero} .8s;
   @media ${({theme}) => theme.mediaQuery.mediaSm}{
     margin-top:5rem;

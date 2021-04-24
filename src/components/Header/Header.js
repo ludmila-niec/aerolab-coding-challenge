@@ -78,6 +78,19 @@ const Header = () => {
     buttonPointsRef.current.focus();
   };
 
+  const toast = {
+    toastSuccess: (
+      <Toast top="-100%" color="success">
+        Points successfully updated!
+      </Toast>
+    ),
+    toastError: (
+      <Toast top="8vh" color="error">
+        Error: Failed to update points
+      </Toast>
+    ),
+  };
+
   return (
     <>
       <HeaderStyled style={{ opacity: `${location.pathname === "/" ? 0 : 1}` }}>
@@ -120,12 +133,6 @@ const Header = () => {
             </Button>
           </WrapperFlex>
         </Navbar>
-        {status === STATUS.RESOLVED && (
-          <Toast color="success">Points successfully updated!</Toast>
-        )}
-        {status === STATUS.REJECTED && (
-          <Toast color="error">Error: Failed to update points</Toast>
-        )}
       </HeaderStyled>
       <></>
       <Modal
@@ -135,6 +142,8 @@ const Header = () => {
         ariaLabel='Get more points'
         modalRef={modalRef}
         buttonRef={buttonModalRef}
+        status={status}
+        toast={toast}
       >
         <AddPoints
           status={status}

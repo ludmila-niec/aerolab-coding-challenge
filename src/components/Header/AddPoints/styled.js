@@ -87,7 +87,7 @@ export const WrapperLoading = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 50vh;
+  min-height: 75vh;
 
   & > p {
     font-size: 1.5rem;
@@ -96,8 +96,15 @@ export const WrapperLoading = styled.div`
   }
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    min-height:730px;
     & > p {
       font-size: 2.5rem;
     }
+  }
+  @media ${({theme}) => theme.mediaQuery.mediaMd}{
+    min-height:820px;
+  }
+  @media ${({theme}) => theme.mediaQuery.mediaLg}{
+    min-height:460px;
   }
 `;
