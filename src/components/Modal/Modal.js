@@ -3,6 +3,13 @@ import React, {useEffect} from "react";
 import { Backdrop, Container, Header } from "./styled";
 import CloseIcon from "../../components/icons/Close";
 
+const STATUS = {
+  IDLE: "IDLE",
+  PENDING: "PENDING",
+  RESOLVED: "RESOLVED",
+  REJECTED: "REJECTED",
+};
+
 const Modal = ({
   title,
   ariaLabel,
@@ -12,8 +19,10 @@ const Modal = ({
   buttonRef,
   onClose,
   isOpen,
+  status,
+  toast
 }) => {
-
+  const {toastSuccess, toastError} = toast
    // avoid scrolling the page when modal is open
   useEffect(() =>{
     const htmlDOM = document.querySelector("html");
@@ -52,6 +61,8 @@ const Modal = ({
         </Header>
         {children}
       </Container>
+        {status === STATUS.RESOLVED && toastSuccess}
+        {status === STATUS.REJECTED && toastError}
     </Backdrop>,
     document.getElementById("modal")
   );

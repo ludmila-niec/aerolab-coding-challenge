@@ -1,15 +1,17 @@
 import styled, { keyframes } from "styled-components";
 
 const showAlert = keyframes`
+0% {opacity:0};
 50% { 
-  right:0;
+  bottom:10%;
 }
 `;
 export const Container = styled.div`
   position: absolute;
   z-index: 25;
-  top: ${({top}) => top || '100%'};
-  right: -100%;
+  bottom:-50%;
+  left:50%;
+  transform: translateX(-50%);
   padding: 1rem;
   width: 90%;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
@@ -23,7 +25,7 @@ export const Container = styled.div`
   color: #ffffff;
   font-weight: 600;
   text-align: center;
-  animation: ${showAlert} 6s cubic-bezier(0, 1.15, 0.62, 0.91);
+  animation: ${showAlert} 4s cubic-bezier(0, 1.15, 0.62, 0.91);
   animation-direction: alternate;
   animation-fill-mode: forwards;
 

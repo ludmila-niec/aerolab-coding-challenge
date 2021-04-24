@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Coin from "../../icons/Coin";
 import Spinner from "../../Spinner";
-import Toast from "../../Toast";
 import {
   Container,
   Title,
@@ -11,36 +10,18 @@ import {
   ButtonGroup,
   Button,
 } from "./styled";
+import { STATUS } from "../ProductCard/ProductCard";
 
-const STATUS = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  RESOLVED: "RESOLVED",
-  REJECTED: "REJECTED",
-};
-
-const RedeemProduct = ({ data, redeemProduct, onClose }) => {
-  const { _id, name, cost, img } = data;
-  const [status, setStatus] = useState(STATUS.IDLE);
-
-  const handleRedeemProduct = async (productId, cost) => {
-    try {
-      setStatus(STATUS.PENDING);
-      await redeemProduct(productId, cost);
-      setStatus(STATUS.RESOLVED);
-    } catch (error) {
-      setStatus(STATUS.REJECTED);
-    }
-  };
+const RedeemProduct = ({ data, status, handleRedeemProduct, onClose }) => {
+  const { name, cost, img } = data;
 
   if (status === STATUS.REJECTED) {
     return (
-      <Container>
-        <Title>Something went wrong</Title>
-        <Toast top="8vh" color="error">
-          Error: Fail to redeem product
-        </Toast>
-      </Container>
+      <>
+        <Container>
+          <Title>Something went wrong</Title>
+        </Container>
+      </>
     );
   }
   if (status === STATUS.RESOLVED) {
@@ -52,9 +33,6 @@ const RedeemProduct = ({ data, redeemProduct, onClose }) => {
             <Image src={img.url} alt={name} />
           </ImageWrapper>
         </Container>
-        <Toast top="8vh" color="success">
-          You've redeemed the product successfully
-        </Toast>
       </>
     );
   }
@@ -76,7 +54,7 @@ const RedeemProduct = ({ data, redeemProduct, onClose }) => {
             <Button
               aria-label="confirm and redeem product"
               primary
-              onClick={() => handleRedeemProduct(_id, cost)}
+              onClick={handleRedeemProduct}
             >
               Confirm
             </Button>

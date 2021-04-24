@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import RedeemProduct from "../RedeemProduct";
+import Toast from "../../Toast";
 import Modal from "../../Modal";
 import BuyWhite from "../../icons/BuyWhite";
 import BuyBlue from "../../icons/BuyBlue";
@@ -16,18 +17,29 @@ import {
   Divider,
 } from "./styled";
 
+export const STATUS = {
+  IDLE: "IDLE",
+  PENDING: "PENDING",
+  RESOLVED: "RESOLVED",
+  REJECTED: "REJECTED",
+};
+
 const ProductCard = ({ data, index }) => {
   const [display, setDisplay] = useState(false);
+  // redeem status
+  const [status, setStatus] = useState(STATUS.IDLE);
+  // modal
   const [isOpenModal, setIsOpenModal] = useState(false);
   // user context
-  const { state, actions } = useUser();
-  const { user } = state;
-  const { redeemProduct } = actions;
+  const {
+    state: { user },
+    actions: { redeemProduct },
+  } = useUser();
   // refs
   const containerRef = useRef(null);
   const modalRef = useRef(null);
   const closeModalBtnRef = useRef(null);
-  const { name, category, cost, img } = data;
+  const { _id, name, category, cost, img } = data;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -50,6 +62,19 @@ const ProductCard = ({ data, index }) => {
       container.removeEventListener("mouseleave", hideOverlay);
     };
   }, []);
+
+  // redeem product handler
+  const handleRedeemProduct = async () => {
+    try {
+      setStatus(STATUS.PENDING);
+      await redeemProduct(_id, cost);
+      setStatus(STATUS.RESOLVED);
+    } catch (error) {
+      setStatus(STATUS.REJECTED);
+    }
+  };
+
+  // reset status para volver a canjear
 
   // when modal is open, focus the 'close' button
   useEffect(() => {
@@ -89,14 +114,24 @@ const ProductCard = ({ data, index }) => {
         <p>{cost}</p>
         <Coin width="40px" height="45px" />
       </WrapperValue>
-      <Button
-        aria-label="select product"
-        onClick={onOpen}
-      >
+      <Button aria-label="select product" onClick={onOpen}>
         Redeem Now
       </Button>
     </Overlay>
   );
+
+  const toast = {
+    toastSuccess: (
+      <Toast color="success">
+        You've redeemed the product successfully
+      </Toast>
+    ),
+    toastError: (
+      <Toast color="error">
+        Error: Fail to redeem product
+      </Toast>
+    ),
+  };
 
   return (
     <>
@@ -123,7 +158,7 @@ const ProductCard = ({ data, index }) => {
             alt={name}
           />
         </WrapperImg>
-        <Divider aria-hidden='true' />
+        <Divider aria-hidden="true" />
         <WrapperInfo>
           <p>{category}</p>
           <p>{name}</p>
@@ -135,11 +170,14 @@ const ProductCard = ({ data, index }) => {
         onClose={onClose}
         modalRef={modalRef}
         buttonRef={closeModalBtnRef}
-        ariaLabel='redeem product process'
+        ariaLabel="redeem product process"
+        status={status}
+        toast={toast}
       >
         <RedeemProduct
           data={data}
-          redeemProduct={redeemProduct}
+          status={status}
+          handleRedeemProduct={handleRedeemProduct}
           onClose={onClose}
         />
       </Modal>

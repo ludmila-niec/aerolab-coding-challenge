@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const WindowOpen = keyframes`
 from {opacity:0; transform: translateY(-100%)}
@@ -8,7 +8,7 @@ to { opacity: 1}
 const BackdropAppear = keyframes`
 from {opacity:0}
 to {opacity: 1}
-`
+`;
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -26,36 +26,34 @@ export const Backdrop = styled.div`
   -webkit-backdrop-filter: blur(12px);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  animation: ${BackdropAppear} .2s linear;
+  align-items: center;
+  animation: ${BackdropAppear} 0.2s linear;
 `;
 
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.colorBg};
   border-radius: 5px;
-  margin-top: 6rem;
   width: 80%;
   display: flex;
   flex-direction: column;
+  transform: translateY(30px);
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
-  animation: ${WindowOpen} .5s cubic-bezier(0.38, 0.25, 0.41, 1.19);
+  animation: ${WindowOpen} 0.5s cubic-bezier(0.38, 0.25, 0.41, 1.19);
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    margin-top: 10rem;
     width: 95%;
+    transform: translateY(0);
   }
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     width: 80%;
-    margin-top: 7rem;
   }
   @media ${({ theme }) => theme.mediaQuery.mediaLg} {
     width: 60%;
-    margin-top: 5rem;
   }
 `;
 
 export const Header = styled.div`
-  min-height:50px;
+  min-height: 50px;
   background: linear-gradient(
     180deg,
     rgba(21, 219, 255, 0.81) 0%,
