@@ -1,6 +1,4 @@
-import React from "react";
-import imgSm from "../../assets/header-x1.png";
-import imgMd from "../../assets/header-x2.png";
+import React  from "react";
 import { Container, Image, Title } from "./styled";
 
 const Hero = ({title}) => {
@@ -8,10 +6,10 @@ const Hero = ({title}) => {
     <section>
       <Container>
         <Image
-          srcSet={`${imgSm} 900w, ${imgMd} 1950w`}
+          srcSet={`${process.env.PUBLIC_URL + "/header-x1.png"} 900w, ${process.env.PUBLIC_URL + "/header-x2.png"} 1950w`}
           sizes="
           (max-width: 899px) 900w, 1950w"
-          src={imgSm}
+          src={process.env.PUBLIC_URL + "/header-x1.png"}
           alt="Headphones Banner"
         />
         <Title>{title}</Title>

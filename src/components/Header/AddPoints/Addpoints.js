@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Card from "./Card";
 import Spinner from "../../Spinner";
 import { Wrapper, WrapperLoading } from "./styled";
-import { STATUS } from "../Header";
+import { STATUS } from "../../../service/status";
 
 const validPoints = [{ value: 1000 }, { value: 5000 }, { value: 7500 }];
 

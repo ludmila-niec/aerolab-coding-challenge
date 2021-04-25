@@ -2,15 +2,13 @@ import React from "react";
 import { Container, WrapperFlex, Label, Button } from "./styled";
 import { TYPES } from "../Products";
 
-const Filter = ({ filterApplyed, actions }) => {
-  const { showMostRecent, showLowestPrice, showHighestPrice } = actions;
+const Filter = ({ filterApplyed, handleFilterSelected }) => {
   const filterBtns = [
-    { name: "Most Recent", type: TYPES.MOST_RECENT, action: showMostRecent },
-    { name: "Lowest Price", type: TYPES.LOWEST_PRICE, action: showLowestPrice },
+    { name: "Most recent", type: TYPES.MOST_RECENT },
+    { name: "Lowest price", type: TYPES.LOWEST_PRICE },
     {
-      name: "Highest Price",
+      name: "Highest price",
       type: TYPES.HIGHEST_PRICE,
-      action: showHighestPrice,
     },
   ];
   return (
@@ -22,7 +20,7 @@ const Filter = ({ filterApplyed, actions }) => {
             aria-label={`sort products by ${filter.name}`}
             key={filter.type}
             active={filter.type === filterApplyed}
-            onClick={() => filter.action(filter.type)}
+            onClick={() => handleFilterSelected(filter.type)}
           >
             {filter.name}
           </Button>

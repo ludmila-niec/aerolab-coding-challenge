@@ -12,7 +12,7 @@ export const Container = styled.div`
   overflow-y: auto;
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
-    min-height: 550px;
+    height: 520px;
     margin: 2rem;
     padding: 2rem;
   }
@@ -105,6 +105,10 @@ export const Button = styled.button`
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     width: 40%;
     margin-bottom: 0;
+    &.btn__history {
+      width: 60%;
+      margin-right: 0px !important;
+    }
   }
 
   &:hover {

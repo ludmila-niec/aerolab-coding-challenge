@@ -1,7 +1,4 @@
 import React from "react";
-// import Github from "../icons/Github";
-// import Linkedin from "../icons/Linkedin";
-// import Email from "../icons/Email";
 import { Container, Wrapper } from "./styled";
 import { GitHub, LinkedIn, Email } from "@material-ui/icons";
 

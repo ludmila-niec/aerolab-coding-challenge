@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArrowRight = ({width, height}) => {
+const ArrowRight = ({ width, height }) => {
   return (
     <svg
       width={width || "48px"}
@@ -9,12 +9,7 @@ const ArrowRight = ({width, height}) => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-labelledby="arrow-right-title-id arrow-right-desc-id"
     >
-      <title id='arrow-right-title-id'>arrow next</title>
-      <desc id='arrow-right-desc-id'>Icon with arrow facing the right side</desc>
-      <desc>Created with Sketch.</desc>
-      <defs></defs>
       <g
         id="Page-1"
         stroke="none"

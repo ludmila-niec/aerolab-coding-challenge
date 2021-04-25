@@ -8,8 +8,8 @@ export const HeaderStyled = styled.header`
   position: fixed;
   top: 0;
   z-index: 20;
-  @media ${({theme}) => theme.mediaQuery.mediaSm}{
-    height:70px;
+  @media ${({ theme }) => theme.mediaQuery.mediaSm} {
+    height: 70px;
   }
 `;
 
@@ -39,6 +39,7 @@ export const Navbar = styled.nav`
 `;
 
 export const WrapperFlex = styled.div`
+  min-width: 120px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -52,12 +53,12 @@ export const WrapperFlex = styled.div`
 export const UserWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   margin-right: 1rem;
   position: relative;
   cursor: pointer;
-  &:focus{
-    outline:none;
+
+  &:focus {
+    outline: none;
     border: 2px solid blue;
   }
 `;
@@ -66,7 +67,6 @@ export const Username = styled.p`
   font-size: 1rem;
   color: ${({ theme }) => theme.gray300};
   margin-right: 0.5rem;
-
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     font-size: 1.2rem;
   }
@@ -91,8 +91,8 @@ export const LinkStyled = styled(Link)`
   &:hover {
     color: ${({ theme }) => theme.colorSecondary};
   }
-  &:focus{
-    outline:none;
+  &:focus {
+    outline: none;
     border: 2px solid blue;
   }
 `;
@@ -105,8 +105,8 @@ export const Button = styled.button`
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  &:focus{
-    outline:none;
+  &:focus {
+    outline: none;
     border: 2px solid blue;
   }
 `;

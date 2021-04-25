@@ -3,13 +3,7 @@ import Hero from "../components/Hero";
 import Categories from "../components/Categories";
 import Products from "../components/Products";
 import { useProducts } from "../context/product/productContext";
-
-const STATUS = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  RESOLVED: "RESOLVED",
-  REJECTED: "REJECTED",
-};
+import { STATUS } from "../service/status";
 
 const Home = () => {
   const [status, setStatus] = useState(STATUS.IDLE);

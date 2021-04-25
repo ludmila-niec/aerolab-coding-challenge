@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Hero from "../components/Hero";
-import Categories from '../components/Categories'
+import Categories from "../components/Categories";
 import Products from "../components/Products";
 import PageNotFound from "../components/PageNotFound";
 import { useProducts } from "../context/product/productContext";
 import { useParams } from "react-router-dom";
-
-const STATUS = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  RESOLVED: "RESOLVED",
-  REJECTED: "REJECTED",
-};
+import { STATUS } from "../service/status"
 
 const Category = () => {
   const [status, setStatus] = useState(STATUS.IDLE);

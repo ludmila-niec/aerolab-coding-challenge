@@ -9,10 +9,7 @@ const ArrowLeft = ({ width, height }) => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-labelledby="arrow-left-title-id arrow-left-desc-id"
     >
-        <title id='arrow-left-title-id'>arrow previous</title>
-        <desc id='arrow-left-desc-id'>Icon with arrow facing the left side</desc>
       <defs></defs>
       <g
         id="Page-1"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "../Layout";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
@@ -7,6 +7,7 @@ import Spinner from "../Spinner";
 import { Navigation, WrapperBottom, WrapperFlex } from "./styled";
 import useFilter from "../../hooks/useFilter";
 import usePagination from "../../hooks/usePagination";
+import { STATUS } from "../../service/status";
 
 export const TYPES = {
   MOST_RECENT: "MOST_RECENT",
@@ -14,42 +15,20 @@ export const TYPES = {
   HIGHEST_PRICE: "HIGHEST_PRICE",
 };
 
-const STATUS = {
-  PENDING: "PENDING",
-  RESOLVED: "RESOLVED",
-  REJECTED: "REJECTED",
-};
-
 const Products = ({ products, status }) => {
-  const {
-    filteredList,
-    setFilteredList,
-    filterApplyed,
-    showMostRecent,
-    showLowestPrice,
-    showHighestPrice,
-  } = useFilter(TYPES.MOST_RECENT, products);
+  const { filteredList, filterApplyed, setFilterApplyed } = useFilter(products);
   const {
     currentPage,
-    setCurrentPage,
     currentProducts,
     numberOfPages,
     numberOfProductsShowing,
-    setNumberOfProductsShowing,
     handleNextPage,
     handlePrevPage,
   } = usePagination(filteredList);
 
-  useEffect(() => {
-    setFilteredList(products);
-  }, [products, setFilteredList]);
-
-  useEffect(() => {
-    if (products.length > 16) {
-      setCurrentPage(1);
-      setNumberOfProductsShowing(16);
-    }
-  }, [products.length, filterApplyed, setCurrentPage, setNumberOfProductsShowing]);
+  const handleFilterSelected = (filter) => {
+    setFilterApplyed(filter);
+  };
 
   if (status === STATUS.PENDING) {
     return (
@@ -75,7 +54,7 @@ const Products = ({ products, status }) => {
         <Navigation>
           <Filter
             filterApplyed={filterApplyed}
-            actions={{ showMostRecent, showLowestPrice, showHighestPrice }}
+            handleFilterSelected={handleFilterSelected}
           />
           <Pagination
             handleNextPage={handleNextPage}
@@ -102,4 +81,4 @@ const Products = ({ products, status }) => {
   );
 };
 
-export default Products;
+export default React.memo(Products);

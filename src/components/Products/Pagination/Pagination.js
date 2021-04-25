@@ -9,19 +9,21 @@ const Pagination = ({
   numberOfPages,
   currentPage,
   numberOfProductsShowing,
-  totalProducts
+  totalProducts,
 }) => {
   return (
     <Container>
-      <Text>{numberOfProductsShowing} of {totalProducts} Products</Text>
+      <Text>
+        {numberOfProductsShowing} of {totalProducts} Products
+      </Text>
       <ButtonWrapper>
         {currentPage < numberOfPages && (
-          <Button aria-label='show next page' onClick={handleNextPage}>
+          <Button aria-label="show next page" onClick={handleNextPage}>
             <ArrowRight width="30px" height="30px" />
           </Button>
         )}
         {currentPage > 1 && currentPage <= numberOfPages && (
-          <Button aria-label='show previous page' onClick={handlePrevPage}>
+          <Button aria-label="show previous page" onClick={handlePrevPage}>
             <ArrowLeft width="30px" height="30px" />
           </Button>
         )}
@@ -30,4 +32,4 @@ const Pagination = ({
   );
 };
 
-export default Pagination;
+export default React.memo(Pagination);

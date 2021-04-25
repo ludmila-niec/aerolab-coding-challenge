@@ -9,11 +9,10 @@ const Logo = ({ width, height }) => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-labelledby="logo-title-id"
+      aria-labelledby="logo-kite-title-id logo-kite-desc-id"
     >
-      <title id="logo-title-id">logo</title>
-      <desc id='logo-desc-id'>orange kite</desc>
-      <desc>Created with Sketch.</desc>
+      <title id="logo-kite-title-id">logo</title>
+      <desc id="logo-kite-desc-id">orange kite</desc>
       <defs>
         <linearGradient
           x1="50%"

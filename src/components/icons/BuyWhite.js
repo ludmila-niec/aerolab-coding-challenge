@@ -9,10 +9,8 @@ const BuyWhite = () => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-labelledby="icon-buy-white-id"
       aria-hidden='true'
     >
-      <title id="icon-buy-white-id">Icon with shopping bag</title>
       <defs>
         <filter
           x="-9.1%"

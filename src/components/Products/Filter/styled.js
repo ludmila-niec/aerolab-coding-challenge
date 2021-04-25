@@ -44,7 +44,7 @@ export const Button = styled.button`
   box-shadow: none;
   border: none;
   border-radius: 50px;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.8rem;
   transition: 0.4s;
   cursor: pointer;
 
@@ -59,7 +59,7 @@ export const Button = styled.button`
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     margin-right: 0.8rem;
-    font-size: 1rem;
+    padding: 0.4rem 1rem;
   }
 
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {

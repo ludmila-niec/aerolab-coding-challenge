@@ -1,31 +1,42 @@
-import { useState } from "react";
+import { useState, useMemo} from "react";
 
-export default function useFilter(filterDefault, productList) {
+export const TYPES = {
+  MOST_RECENT: "MOST_RECENT",
+  LOWEST_PRICE: "LOWEST_PRICE",
+  HIGHEST_PRICE: "HIGHEST_PRICE",
+};
+
+function useFilter(productList) {
   const [filteredList, setFilteredList] = useState([]);
-  const [filterApplyed, setFilterApplyed] = useState(filterDefault);
+  const [filterApplyed, setFilterApplyed] = useState(TYPES.MOST_RECENT);
 
-  const showMostRecent = (selected) => {
-    setFilterApplyed(selected);
-    setFilteredList(productList);
-  };
+  useMemo(() => {
+    switch (filterApplyed) {
+      case TYPES.LOWEST_PRICE:
+        const lowestPriceList = [...productList].sort(
+          (a, b) => a.cost - b.cost
+        );
+        return setFilteredList(lowestPriceList);
 
-  const showLowestPrice = (selected) => {
-    setFilterApplyed(selected);
-    const lowestPriceList = [...productList].sort((a, b) => a.cost - b.cost);
-    setFilteredList(lowestPriceList);
-  };
+      case TYPES.HIGHEST_PRICE:
+        const highestPriceList = [...productList].sort(
+          (a, b) => b.cost - a.cost
+        );
+        return setFilteredList(highestPriceList);
 
-  const showHighestPrice = (selected) => {
-    setFilterApplyed(selected);
-    const highestPriceList = [...productList].sort((a, b) => b.cost - a.cost);
-    setFilteredList(highestPriceList);
-  };
+      case TYPES.MOST_RECENT:
+      default:
+        return setFilteredList(productList);
+    }
+  }, [productList, filterApplyed]);
+
+
   return {
     filteredList,
-    setFilteredList,
+    setFilterApplyed,
     filterApplyed,
-    showMostRecent,
-    showLowestPrice,
-    showHighestPrice,
+
   };
 }
+
+export default useFilter;

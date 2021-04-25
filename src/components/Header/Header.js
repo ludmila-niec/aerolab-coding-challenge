@@ -19,13 +19,7 @@ import Modal from "../Modal";
 import AddPoints from "./AddPoints/Addpoints";
 import Toast from "../Toast";
 import { Link, useLocation } from "react-router-dom";
-
-export const STATUS = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  RESOLVED: "RESOLVED",
-  REJECTED: "REJECTED",
-};
+import { STATUS } from "../../service/status";
 
 const Header = () => {
   // track status of 'addPoints' action
@@ -37,7 +31,11 @@ const Header = () => {
   const modalRef = useRef(null);
   const buttonModalRef = useRef(null);
   const buttonPointsRef = useRef(null);
-  const { state:{user}, actions:{addPoints} } = useUser();
+
+  const {
+    state: { user },
+    actions: { addPoints },
+  } = useUser();
   const history = useHistory();
   const location = useLocation();
 
@@ -62,7 +60,7 @@ const Header = () => {
   const resetStatus = () => {
     setStatus(STATUS.IDLE);
   };
-  
+
   const toggleUserMenu = (e) => {
     if (e.keyCode !== 13) return;
     setIsOpenUserMenu(!isOpenUserMenu);
@@ -95,7 +93,7 @@ const Header = () => {
     <>
       <HeaderStyled style={{ opacity: `${location.pathname === "/" ? 0 : 1}` }}>
         <Navbar>
-          <Link id="logo" to="/home" aria-label="go to homepage">
+          <Link id="logo-kite" to="/home" aria-label="go to homepage">
             <Logo width="30px" height="27px" />
           </Link>
           <WrapperFlex>
@@ -139,7 +137,7 @@ const Header = () => {
         isOpen={isOpen}
         onClose={onClose}
         title="Get More Points!"
-        ariaLabel='Get more points'
+        ariaLabel="Get more points"
         modalRef={modalRef}
         buttonRef={buttonModalRef}
         status={status}

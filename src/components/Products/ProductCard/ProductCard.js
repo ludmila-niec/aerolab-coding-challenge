@@ -6,6 +6,7 @@ import BuyWhite from "../../icons/BuyWhite";
 import BuyBlue from "../../icons/BuyBlue";
 import Coin from "../../icons/Coin";
 import { useUser } from "../../../context/user/UserContext";
+import { STATUS } from "../../../service/status";
 import {
   Container,
   WrapperImg,
@@ -17,12 +18,6 @@ import {
   Divider,
 } from "./styled";
 
-export const STATUS = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  RESOLVED: "RESOLVED",
-  REJECTED: "REJECTED",
-};
 
 const ProductCard = ({ data, index }) => {
   const [display, setDisplay] = useState(false);

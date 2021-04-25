@@ -2,13 +2,7 @@ import ReactDOM from "react-dom";
 import React, {useEffect} from "react";
 import { Backdrop, Container, Header } from "./styled";
 import CloseIcon from "../../components/icons/Close";
-
-const STATUS = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  RESOLVED: "RESOLVED",
-  REJECTED: "REJECTED",
-};
+import { STATUS } from "../../service/status";
 
 const Modal = ({
   title,

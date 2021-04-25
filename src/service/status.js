@@ -1,0 +1,6 @@
+export const STATUS = {
+  IDLE: "IDLE",
+  PENDING: "PENDING",
+  RESOLVED: "RESOLVED",
+  REJECTED: "REJECTED",
+};

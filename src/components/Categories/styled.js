@@ -1,10 +1,10 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 
 const showCategories = keyframes`
 from {opacity:0}
 to {opacity:1};
-`
+`;
 
 export const Container = styled.div`
   display: grid;
@@ -14,7 +14,7 @@ export const Container = styled.div`
   background-color: #ffffff;
   border-radius: 5px;
   width: 100%;
-  animation: ${showCategories} .8s;
+  animation: ${showCategories} 0.8s;
   & div:last-of-type {
     border-right: 0;
   }
@@ -33,9 +33,9 @@ export const Wrapper = styled.div`
   border-right: 2px solid ${({ theme }) => theme.gray100};
 `;
 
-export const Subtitle = styled.h3`
+export const Subtitle = styled.h2`
   margin-bottom: 1rem;
-
+  font-size: 1.1rem;
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     font-size: 1.5rem;
   }
@@ -50,15 +50,15 @@ export const CategoryName = styled.p`
 `;
 
 export const LinkStyled = styled(Link)`
-display:block;
-margin:0 auto;
-color:${({theme}) => theme.gray200};
-text-decoration:none;
+  display: block;
+  margin: 0 auto;
+  color: ${({ theme }) => theme.gray200};
+  text-decoration: none;
   & > svg {
     fill: ${({ theme }) => theme.gray200};
   }
   &:hover {
-    color:${({theme}) => theme.colorSecondary};
+    color: ${({ theme }) => theme.colorSecondary};
     & > svg {
       fill: ${({ theme }) => theme.colorSecondary};
     }
@@ -74,7 +74,7 @@ text-decoration:none;
       width: 30px;
     }
   }
-  @media ${({theme}) => theme.mediaQuery.mediaLg}{
-    width:50%;
+  @media ${({ theme }) => theme.mediaQuery.mediaLg} {
+    width: 50%;
   }
 `;

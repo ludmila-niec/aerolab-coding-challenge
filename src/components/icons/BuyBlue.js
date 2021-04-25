@@ -9,10 +9,8 @@ const BuyBlue = () => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-labelledby="icon-buy-blue-id"
-      aria-hidden='true'
+      aria-hidden="true"
     >
-      <title id='icon-buy-blue-id'>shopping bag</title>
       <defs>
         <radialGradient
           cx="50%"

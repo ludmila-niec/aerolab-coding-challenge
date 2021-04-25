@@ -11,7 +11,7 @@ import {
   Button,
 } from "./styled";
 import { useHistory } from "react-router-dom";
-import { STATUS } from "../ProductCard/ProductCard";
+import { STATUS } from "../../../service/status";
 
 const RedeemProduct = ({ data, status, handleRedeemProduct, onClose }) => {
   const { name, cost, img } = data;
@@ -41,12 +41,9 @@ const RedeemProduct = ({ data, status, handleRedeemProduct, onClose }) => {
             <Image src={img.url} alt={name} />
           </ImageWrapper>
           <ButtonGroup>
-            <Button primary onClick={handleRedirectToHistory}>
+            <Button className='btn__history'primary onClick={handleRedirectToHistory}>
              Review History
             </Button>
-            {/* <ButtonLink primary to="/history">
-              Review history
-            </ButtonLink> */}
           </ButtonGroup>
         </Container>
       </>

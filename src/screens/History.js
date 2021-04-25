@@ -6,6 +6,7 @@ import EmptyHistory from "../components/EmptyData/EmptyHistory";
 import Spinner from "../components/Spinner";
 import { getUserHistory } from "../service/userApi";
 import { useUser } from "../context/user/UserContext";
+import { STATUS } from "../service/status";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -37,12 +38,6 @@ const Container = styled.div`
     }
   }
 `;
-
-const STATUS = {
-  PENDING: "PENDING",
-  RESOLVED: "RESOLVED",
-  REJECTED: "REJECTED",
-};
 
 const History = () => {
   const [history, setHistory] = useState([]);
