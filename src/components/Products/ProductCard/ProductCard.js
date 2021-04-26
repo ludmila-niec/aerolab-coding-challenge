@@ -18,7 +18,6 @@ import {
   Divider,
 } from "./styled";
 
-
 const ProductCard = ({ data, index }) => {
   const [display, setDisplay] = useState(false);
   // redeem status
@@ -69,7 +68,12 @@ const ProductCard = ({ data, index }) => {
     }
   };
 
-  // reset status para volver a canjear
+  // reset status to redeem product again
+  useEffect(() => {
+    if (!isOpenModal && status === STATUS.RESOLVED) {
+      setStatus(STATUS.IDLE);
+    }
+  }, [isOpenModal, status]);
 
   // when modal is open, focus the 'close' button
   useEffect(() => {

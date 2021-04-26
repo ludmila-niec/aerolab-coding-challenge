@@ -1,14 +1,14 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const showTable = keyframes`
 from {opacity:0; transform: translateY(10%)}
-`
+`;
 
 export const TableStyled = styled.table`
   width: 100%;
   background-color: #ffffff;
   border-radius: 5px;
-  animation: ${showTable} .8s;
+  animation: ${showTable} 0.8s;
   th,
   td {
     border: 1px solid ${({ theme }) => theme.gray100};
@@ -43,7 +43,7 @@ export const TableHeading = styled.th`
 
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     font-size: 1.6rem;
-    padding-left:1.5rem;
+    padding-left: 1.5rem;
   }
 `;
 
@@ -123,16 +123,38 @@ export const WrapperFlex = styled.div`
 
 export const Image = styled.img`
   width: 80px;
-  min-height:57px;
+  min-height: 57px;
   height: auto;
-  background-color: ${({theme}) => theme.gray100};
+  background-color: ${({ theme }) => theme.gray100};
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     width: 100px;
-    min-height:72px;
+    min-height: 72px;
   }
   @media ${({ theme }) => theme.mediaQuery.mediaMd} {
     width: 150px;
-    min-height:108px;
+    min-height: 108px;
+  }
+`;
+export const Button = styled.button`
+  margin: 0 auto;
+  position: sticky;
+  opacity: 0;
+  bottom: 50px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.5rem;
+  color: #ffffff;
+  background-color: ${({ theme }) => theme.colorPrimary};
+  box-shadow: none;
+  border: none;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  transition: 0.4s;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: block;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colorSecondary};
   }
 `;

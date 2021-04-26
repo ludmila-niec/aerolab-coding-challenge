@@ -59,6 +59,7 @@ const History = () => {
   }, []);
 
   const userHasProducts = history.length > 0;
+  const historySortMostRecent = userHasProducts && [...history].reverse();
 
   if (status === STATUS.PENDING) {
     return (
@@ -91,7 +92,11 @@ const History = () => {
     <>
       <Hero title={`${user.name}'s redeem history`} />
       <Layout>
-        {userHasProducts ? <Table history={history} /> : <EmptyHistory />}
+        {userHasProducts ? (
+          <Table history={historySortMostRecent} />
+        ) : (
+          <EmptyHistory />
+        )}
       </Layout>
     </>
   );
