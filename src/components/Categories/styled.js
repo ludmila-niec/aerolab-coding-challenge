@@ -64,8 +64,7 @@ export const LinkStyled = styled(Link)`
     }
   }
   &:focus {
-    outline: none;
-    border: 2px solid blue;
+    outline: 2px solid blue;
   }
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {

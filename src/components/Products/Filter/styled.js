@@ -52,10 +52,7 @@ export const Button = styled.button`
     background-color: ${({ active, theme }) => !active && theme.colorSecondary};
     color: #ffffff;
   }
-  &:focus{
-    outline:none;
-    border: 2px solid blue;
-  }
+
 
   @media ${({ theme }) => theme.mediaQuery.mediaSm} {
     margin-right: 0.8rem;

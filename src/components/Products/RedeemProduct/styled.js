@@ -50,7 +50,6 @@ const ImageZoom = keyframes`
 
 export const Image = styled.img`
   animation: ${ImageZoom} 2.5s ease-in-out infinite;
-  margin: 2rem auto;
 `;
 export const CostWrapper = styled.div`
   display: flex;

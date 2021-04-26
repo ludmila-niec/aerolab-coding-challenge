@@ -29,11 +29,6 @@ export const Button = styled.button`
   box-shadow: none;
   cursor: pointer;
   margin-left: 1rem;
-  &:focus {
-    outline: none;
-    border: 2px solid blue;
-    border-radius: 50px;
-  }
 
   @media ${({ theme }) => theme.mediaQuery.mediaLg} {
     & > svg {

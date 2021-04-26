@@ -38,8 +38,11 @@ body{
 }
 
 a:focus{
-  outline:none;
-  border: 2px solid blue;
+  outline: 2px solid blue;
+}
+
+button:focus{
+  outline: 2px solid blue;
 }
 `;
 

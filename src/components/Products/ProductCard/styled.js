@@ -19,8 +19,7 @@ export const Container = styled.article`
     ${({ index }) => index * 0.05 + "s"};
 
   &:focus{
-    outline:none;
-    border: 2px solid blue;
+    outline:2px solid blue;
   }
   & > svg {
     position: absolute;
@@ -110,10 +109,6 @@ export const Button = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.gray200};
     color: ${({ theme }) => theme.gray100};
-  }
-  &:focus {
-    outline: none;
-    border: 2px solid blue
   }
 `;
 

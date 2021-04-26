@@ -58,8 +58,7 @@ export const UserWrapper = styled.div`
   cursor: pointer;
 
   &:focus {
-    outline: none;
-    border: 2px solid blue;
+    outline: 2px solid blue;
   }
 `;
 
@@ -92,8 +91,7 @@ export const LinkStyled = styled(Link)`
     color: ${({ theme }) => theme.colorSecondary};
   }
   &:focus {
-    outline: none;
-    border: 2px solid blue;
+    outline: 2px solid blue;
   }
 `;
 
@@ -105,10 +103,6 @@ export const Button = styled.button`
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  &:focus {
-    outline: none;
-    border: 2px solid blue;
-  }
 `;
 
 export const Text = styled.p`
