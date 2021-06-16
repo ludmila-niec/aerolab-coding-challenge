@@ -20,23 +20,6 @@ body{
     font-weight:400;
 }
 
-@font-face {
-  font-family: "Source Sans Pro";
-  font-style:normal;
-  font-weight:400;
-  font-display:swap;
-  src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2") format("woff2");
-  unicode-range: U+00-5FF;
-}
-@font-face {
-  font-family: "Source Sans Pro";
-  font-style:normal;
-  font-weight:600;
-  font-display:swap;
-  src: url("https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2") format("woff2");
-  unicode-range: U+00-5FF;
-}
-
 a:focus{
   outline: 2px solid blue;
 }

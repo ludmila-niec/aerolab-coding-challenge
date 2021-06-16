@@ -31,7 +31,7 @@ export const Container = styled.article`
 
 export const WrapperImg = styled.div`
   flex: 1;
-  & > img {
+  & > picture > img {
     min-height: 182px;
     min-width: 252px;
     background-color: ${({ theme }) => theme.gray100};

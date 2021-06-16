@@ -38,11 +38,23 @@ const RedeemProduct = ({ data, status, handleRedeemProduct, onClose }) => {
         <Container>
           <Title>Congratulations! You've redeemed "{name}"</Title>
           <ImageWrapper>
-            <Image src={img.url} alt={name} />
+            <picture>
+              <source
+                type="image/png"
+                srcSet={img.hdUrl}
+                media="(min-width:960px)"
+              />
+              <source type="image/png" srcSet={img.url} />
+              <Image src={img.url} alt={name} width="200" height="250" />
+            </picture>
           </ImageWrapper>
           <ButtonGroup>
-            <Button className='btn__history'primary onClick={handleRedirectToHistory}>
-             Review History
+            <Button
+              className="btn__history"
+              primary
+              onClick={handleRedirectToHistory}
+            >
+              Review History
             </Button>
           </ButtonGroup>
         </Container>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Layout from "../Layout";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
@@ -19,16 +19,31 @@ const Products = ({ products, status }) => {
   const { filteredList, filterApplyed, setFilterApplyed } = useFilter(products);
   const {
     currentPage,
+    setCurrentPage,
     currentProducts,
     numberOfPages,
     numberOfProductsShowing,
+    setNumberOfProductsShowing,
     handleNextPage,
     handlePrevPage,
+    initialProductsRef,
   } = usePagination(filteredList);
 
-  const handleFilterSelected = (filter) => {
-    setFilterApplyed(filter);
-  };
+  // al cambiar de filtro volver a la pagina 1
+  // mostrar set de primeros productos (ref)
+  const handleFilterSelected = useCallback(
+    (filter) => {
+      setFilterApplyed(filter);
+      setCurrentPage(1);
+      setNumberOfProductsShowing(initialProductsRef.current);
+    },
+    [
+      setFilterApplyed,
+      setCurrentPage,
+      setNumberOfProductsShowing,
+      initialProductsRef,
+    ]
+  );
 
   if (status === STATUS.PENDING) {
     return (
@@ -81,4 +96,4 @@ const Products = ({ products, status }) => {
   );
 };
 
-export default React.memo(Products);
+export default Products;

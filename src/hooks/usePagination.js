@@ -1,12 +1,16 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 export default function usePagination(filteredList) {
   const [currentPage, setCurrentPage] = useState(1);
   const [numberOfProductsShowing, setNumberOfProductsShowing] = useState(16);
+  const initialProductsRef = useRef(16)
+  // Guardo el valor inicial (ref) del set de productos para la primera pagina, cuando se cambia del filtro, muestro ese valor inicial.
 
+  // En la pagina de la categorías al mostrar una cantidad menor a 16 (default)productos, es necesario hacer un update de la cantidad de productos disponibles y cuantos se estan mostrando
   useEffect(() => {
     if (filteredList.length > 0 && filteredList.length < 16) {
       setNumberOfProductsShowing(filteredList.length);
+      initialProductsRef.current = filteredList.length
     }
   }, [filteredList.length]);
 
@@ -33,10 +37,13 @@ export default function usePagination(filteredList) {
 
   return {
     currentPage,
+    setCurrentPage,
     currentProducts,
     numberOfPages,
     numberOfProductsShowing,
+    setNumberOfProductsShowing,
     handleNextPage,
     handlePrevPage,
+    initialProductsRef
   };
 }

@@ -83,26 +83,19 @@ const ProductCard = ({ data, index }) => {
   // MODAL HANDLERS //
   const onOpen = () => {
     setIsOpenModal(true);
-    toggleScrollLock();
+    // toggleScrollLock();
   };
 
   const onClose = () => {
     setIsOpenModal(false);
-    toggleScrollLock();
-  };
-
-  // avoid scrolling the page when modal is open
-  const toggleScrollLock = () => {
-    const htmlDOM = document.querySelector("html");
-    if (isOpenModal) {
-      return (htmlDOM.style.overflow = "visible");
-    }
-    htmlDOM.style.overflow = "hidden";
+    // toggleScrollLock();
   };
 
   // keyboard navigation for products
   const onKeyDown = (e) => {
+    // enter
     if (e.keyCode === 13) setDisplay(true);
+    // esc
     if (e.keyCode === 27) setDisplay(false);
   };
 
@@ -121,15 +114,9 @@ const ProductCard = ({ data, index }) => {
 
   const toast = {
     toastSuccess: (
-      <Toast color="success">
-        You've redeemed the product successfully
-      </Toast>
+      <Toast color="success">You've redeemed the product successfully</Toast>
     ),
-    toastError: (
-      <Toast color="error">
-        Error: Fail to redeem product
-      </Toast>
-    ),
+    toastError: <Toast color="error">Error: Fail to redeem product</Toast>,
   };
 
   return (
@@ -149,13 +136,23 @@ const ProductCard = ({ data, index }) => {
             <Coin width="25px" height="23px" />
           </Badge>
         )}
-
+        {/* en el futuro se puede agregar source tag con otro formato de imagen + se corregió render de la imagen correcta segun el tamaño del viewport*/}
         <WrapperImg>
-          <img
-            src={img.url}
-            srcSet={`${img.hdUrl} 2x, ${img.url} 1x`}
-            alt={name}
-          />
+          <picture>
+            <source
+              type="image/png"
+              srcSet={img.hdUrl}
+              media="(min-width:960px)"
+            />
+            <source type="image/png" srcSet={img.url} />
+            <img
+              src={img.url}
+              alt={name}
+              loading="lazy"
+              width="200"
+              height="250"
+            />
+          </picture>
         </WrapperImg>
         <Divider aria-hidden="true" />
         <WrapperInfo>

@@ -22,7 +22,7 @@ const Pagination = ({
             <ArrowRight width="30px" height="30px" />
           </Button>
         )}
-        {currentPage > 1 && currentPage <= numberOfPages && (
+        {currentPage > 1 && (
           <Button aria-label="show previous page" onClick={handlePrevPage}>
             <ArrowLeft width="30px" height="30px" />
           </Button>

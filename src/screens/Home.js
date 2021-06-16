@@ -11,7 +11,6 @@ const Home = () => {
     state: { products },
     actions: { loadProducts },
   } = useProducts();
-
   useEffect(() => {
     if (products.length === 0) {
       setStatus(STATUS.PENDING);
